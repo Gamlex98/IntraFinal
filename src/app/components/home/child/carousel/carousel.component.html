@@ -1,0 +1,13 @@
+
+<ly-carousel [withClass]="classes.carousel">
+  <ly-carousel-item
+    *ngFor="let item of items"
+    [withClass]="classes.carouselItem"
+    [srcImg]="item.img"
+  >
+    <h1 [lyTyp]="'headline'" >{{ item.title }}</h1>
+    <p [lyTyp]="'body1'" >
+      Aqui va la informacion sobre la imagen .
+    </p>
+  </ly-carousel-item>
+</ly-carousel>

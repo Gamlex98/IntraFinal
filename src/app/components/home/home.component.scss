@@ -1,0 +1,26 @@
+.container {
+    text-align: center;
+    position: relative;
+}
+
+.card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 0 .25rem .5rem #e6edef;
+    box-shadow: 0 .25rem .5rem #e6edef;
+
+    .card-head {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #edf1f7;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .card-body {
+        padding: 1rem 1.5rem;
+    }
+}
+

@@ -1,0 +1,15 @@
+
+
+<p-button (click)="showDialog()" icon="pi pi-envelope" label="Bienvenido" styleClass="p-button-secondary"></p-button>
+<p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">Bienvenido a la web de Fresmar</span>
+    </ng-template>
+    <p>
+        En la Intranet encontrarás el siguiente contenido : Univesridad Fresmar , Cuadre de Caja, en el Home contenido sobre noticias , etc, zona para documentos en los que podras encontrar
+        plantillas de Excel , Word y PowerPoint, Calendario para los eventos del mes y Solicitudes.
+    </p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="visible = false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
