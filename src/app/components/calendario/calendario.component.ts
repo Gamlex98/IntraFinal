@@ -8,6 +8,8 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
 import esLocale from '@fullcalendar/core/locales/es';
 import { CalendarService } from 'src/app/services/calendar.service'; 
 import { EventModel } from 'src/app/models/event.model'; 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -33,9 +35,8 @@ export class CalendarioComponent {
     },
     initialView: 'dayGridMonth',
     locale: esLocale ,
-    initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     weekends: true,
-    editable: true,
+    // editable: true,
     selectable: true,
     selectMirror: true,
     dayMaxEvents: true,
@@ -43,19 +44,56 @@ export class CalendarioComponent {
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
  /*    eventAdd: this.handleEventAdd.bind(this), */
-    eventRemove: this.handleEventRemove.bind(this)
   }
 
   currentEvents: EventApi[] = [];
 
-  constructor(
-    private changeDetector: ChangeDetectorRef, private calendarService: CalendarService) {}
+  constructor( private changeDetector: ChangeDetectorRef, private calendarService: CalendarService, private modalService: NgbModal) {}
 
   ngOnInit() {
-    this.calendarService.getEvents().subscribe(events => {
+    this.refreshEvents(); // Obtener eventos al iniciar el componente
+  }
+
+  refreshEvents() {
+    this.calendarService.getEvents().subscribe((events) => {
       this.calendarOptions.events = events;
     });
   }
+
+  handleDateSelect(selectInfo: DateSelectArg) {
+  const modalRef = this.modalService.open(ModalComponent);
+  modalRef.result.then((result) => {
+    if (result) {
+      const { titulo, fechaStart, fechaEnd } = result;
+      const calendarApi = selectInfo.view.calendar;
+  
+      console.log('Título:', titulo);
+      console.log('Fecha de inicio:', fechaStart);
+      console.log('Fecha de fin:', fechaEnd);
+  
+      calendarApi.unselect(); // clear date selection
+  
+      calendarApi.addEvent({
+        id: createEventId(),
+         title: titulo,
+        start: fechaStart,
+        end: fechaEnd,
+        allDay: selectInfo.allDay
+      });
+  
+      let eventoGuardar = new EventModel();
+      eventoGuardar.title = titulo;
+      eventoGuardar.start = fechaStart;
+      eventoGuardar.end = fechaEnd;
+      this.grabarEventoBD(eventoGuardar);
+
+      this.refreshEvents(); 
+      }
+    }, (reason) => {
+      console.log(reason);
+    });
+  }   
+
 
   handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
@@ -65,51 +103,6 @@ export class CalendarioComponent {
     const { calendarOptions } = this;
     calendarOptions.weekends = !calendarOptions.weekends;
   }
-  
-
-  handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('INGRESA EL TITULO PARA EL NUEVO EVENTO');
-    const calendarApi = selectInfo.view.calendar;
-
-    calendarApi.unselect(); // clear date selection
-
-    if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      });
-      //Va a grabar el evento en la BD
-      //Ajusta el formato de las horas para ajsutarlo a ISO 8601
-      let fechaStart = new Date(selectInfo.startStr);
-      let horas= fechaStart.getUTCHours();
-      //Le adiciona 7 horas porque CO es UTC-5 //Para compensar
-      horas=horas+7;
-      fechaStart.setHours(horas);
-      let fechaEnd = new Date(selectInfo.endStr);
-      let horasEnd= fechaEnd.getHours();
-      //Le adiciona 7 horas porque CO es UTC-5 //Para compensar
-      horasEnd=horasEnd+7;
-      fechaEnd.setHours(horasEnd);
-
-      let eventoGuardar = new EventModel();
-      eventoGuardar.title = title;
-      eventoGuardar.start =fechaStart;
-      eventoGuardar.end = fechaEnd;
-      this.grabarEventoBD(eventoGuardar);
-    }
-  }
-
-  handleEventRemove(arg: EventRemoveArg) {
-    console.log('Id Evento a borrar:',arg.event.id);
-    this.calendarService.removeEvent(arg.event.id).subscribe(event => {
-      console.log('Evento Borrado:', event);
-    }, error => {
-      console.log('Error al borrar evento:', error);
-    });
-  }
 
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`¿ ESTAS SEGURO QUE DESEAS ELIMINAR ESTE EVENTO ? '${clickInfo.event.title}'`)) {
@@ -117,7 +110,8 @@ export class CalendarioComponent {
       // clickInfo.event.remove();
       this.calendarService.removeEvent(clickInfo.event.id).subscribe({
         next: (data:any)=>{
-            console.log("evento borrado de la BD",data) 
+            console.log("evento borrado de la BD",data);
+            this.refreshEvents(); 
           },
         error:(e)=> console.log(e)
         });
@@ -125,16 +119,23 @@ export class CalendarioComponent {
   }
 
   handleEvents(events: EventApi[]) {
-    this.currentEvents = events;
+    this.currentEvents = events.sort((a, b) => {
+      // Ordenar por fecha de inicio en orden descendente
+      const aStart = a.start?.getTime() || 0; // Valor predeterminado en caso de nulo
+      const bStart = b.start?.getTime() || 0; // Valor predeterminado en caso de nulo
+  
+      return bStart - aStart;
+    });
     this.changeDetector.detectChanges();
   }
-
+  
 
   //Graba en la base de datos el evento ingresado por el usuario
   grabarEventoBD(eventoGrabar: EventModel){
     this.calendarService.addEvent(eventoGrabar).subscribe({
       next: (data:any)=>{
         console.log("Evento guaardado en base de datos");
+        this.changeDetector.detectChanges();
         },
       error:(e)=> console.log(e)
       });

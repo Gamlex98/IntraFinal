@@ -24,7 +24,7 @@
         </label>
       </div>
 
-      <h2 style="font-weight: bold;">Listado eventos activos ({{currentEvents.length}})</h2>
+      <h2 style="font-weight: bold;">Listado eventos ({{currentEvents.length}})</h2>
       <div class='demo-app-sidebar-section event-list'>
         <ul>
           <li *ngFor='let event of currentEvents' style="font-size: 13px;">
@@ -37,7 +37,6 @@
         </ul>
       </div>
     </div>
-  
     <div class='demo-app-main'>
       <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
         <ng-template #eventContent let-arg>

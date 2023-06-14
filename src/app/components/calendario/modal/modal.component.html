@@ -1,0 +1,26 @@
+
+
+<div class="modal-header">
+  <h4 class="modal-title">Agregar Evento</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="guardarEvento()">
+    <div class="form-group">
+      <label>Título:</label>
+      <input type="text" class="form-control" [(ngModel)]="titulo" name="titulo" required>
+    </div>
+    <div class="form-group">
+      <label>Fecha de inicio:</label>
+      <input type="datetime-local" class="form-control" [(ngModel)]="fechaInicio" name="fechaInicio" required>
+    </div>
+    <div class="form-group">
+      <label>Fecha de fin:</label>
+      <input type="datetime-local" class="form-control" [(ngModel)]="fechaFin" name="fechaFin" required>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top: 15px;margin-left: 120px">Guardar</button>
+    <button type="button" class="btn btn-secondary" style="margin-top: 15px;margin-left: 12px;" (click)="modal.dismiss()">Cancelar</button>
+  </form>
+</div>

@@ -42,6 +42,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { UploadComponent } from './components/upload/upload.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SublevelMenuComponent } from './components/nav-var/sublevel-menu.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './components/calendario/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { SublevelMenuComponent } from './components/nav-var/sublevel-menu.compon
     InfoComplementComponent,
     CarouselComponent,
     UploadComponent,
-    SublevelMenuComponent
+    SublevelMenuComponent,
+    ModalComponent
     
   ],
   imports: [
@@ -90,7 +93,8 @@ import { SublevelMenuComponent } from './components/nav-var/sublevel-menu.compon
     FontAwesomeModule,
     InputTextModule,
     CalendarModule,
-    MatProgressBarModule    
+    MatProgressBarModule,
+    NgbModule    
   ],
   providers: [Validators, 
             { provide: HAMMER_GESTURE_CONFIG, useClass: LyHammerGestureConfig }, [ LyTheme2 ],
