@@ -25,17 +25,18 @@ export const navbarData: INavbarData[] = [
             },
             {
                 routeLink : 'documentos/plantillasFresmar',
-                label : 'Plantillas'
-            },
-            {
-                routeLink : 'documentos/logosFresmar',
-                label: 'Logos'
+                label : 'Formatos'
             },
             {
                 routeLink : 'documentos/manuales-Guias-Fresmar',
                 icon: 'fa fa-file',
                 label: 'Manuales y Guias'
             },
+            {
+                routeLink : 'documentos/logosFresmar',
+                label: 'Logos'
+            },
+         
         ]
     },
     {

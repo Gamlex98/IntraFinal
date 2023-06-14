@@ -19,6 +19,11 @@ h2 {
     margin-right: 3px;
   }
   
+  .event-list {
+    max-height: 500px; /* Altura máxima de la lista de eventos */
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando la lista se desborda */
+  }
+
   .demo-app {
     display: flex;
     min-height: 100%;
@@ -34,7 +39,7 @@ h2 {
   }
   
   .demo-app-sidebar-section {
-    padding: 2em;
+    padding: 0.5em;
   }
   
   .demo-app-main {

@@ -1,6 +1,6 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventAddArg, EventRemoveArg } from '@fullcalendar/core';
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
@@ -8,7 +8,6 @@ import { INITIAL_EVENTS, createEventId } from './event-utils';
 import esLocale from '@fullcalendar/core/locales/es';
 import { CalendarService } from 'src/app/services/calendar.service'; 
 import { EventModel } from 'src/app/models/event.model'; 
-import { StandardEvent, startOfDay } from '@fullcalendar/core/internal';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +16,9 @@ import { StandardEvent, startOfDay } from '@fullcalendar/core/internal';
   providers:[CalendarService]
 })
 export class CalendarioComponent {
+
   calendarVisible = true;
+  startDate !: Date;
   calendarOptions: CalendarOptions = {
     plugins: [
       interactionPlugin,
@@ -43,7 +44,7 @@ export class CalendarioComponent {
     eventsSet: this.handleEvents.bind(this),
  /*    eventAdd: this.handleEventAdd.bind(this), */
     eventRemove: this.handleEventRemove.bind(this)
-  };
+  }
 
   currentEvents: EventApi[] = [];
 
@@ -56,7 +57,6 @@ export class CalendarioComponent {
     });
   }
 
-
   handleCalendarToggle() {
     this.calendarVisible = !this.calendarVisible;
   }
@@ -65,6 +65,7 @@ export class CalendarioComponent {
     const { calendarOptions } = this;
     calendarOptions.weekends = !calendarOptions.weekends;
   }
+  
 
   handleDateSelect(selectInfo: DateSelectArg) {
     const title = prompt('INGRESA EL TITULO PARA EL NUEVO EVENTO');
@@ -83,35 +84,32 @@ export class CalendarioComponent {
       //Va a grabar el evento en la BD
       //Ajusta el formato de las horas para ajsutarlo a ISO 8601
       let fechaStart = new Date(selectInfo.startStr);
-      let horas= fechaStart.getHours();
-      //Le adiciona 5 horas porque CO es UTC-5 //Para compensar
+      let horas= fechaStart.getUTCHours();
+      //Le adiciona 7 horas porque CO es UTC-5 //Para compensar
       horas=horas+7;
       fechaStart.setHours(horas);
       let fechaEnd = new Date(selectInfo.endStr);
       let horasEnd= fechaEnd.getHours();
-      //Le adiciona 5 horas porque CO es UTC-5 //Para compensar
+      //Le adiciona 7 horas porque CO es UTC-5 //Para compensar
       horasEnd=horasEnd+7;
       fechaEnd.setHours(horasEnd);
 
-      let eventoaGuardar = new EventModel();
-      eventoaGuardar.title = title;
-      eventoaGuardar.start =fechaStart;
-      eventoaGuardar.end = fechaEnd;
-      this.grabarEventoBD(eventoaGuardar);
-
+      let eventoGuardar = new EventModel();
+      eventoGuardar.title = title;
+      eventoGuardar.start =fechaStart;
+      eventoGuardar.end = fechaEnd;
+      this.grabarEventoBD(eventoGuardar);
     }
   }
 
   handleEventRemove(arg: EventRemoveArg) {
-    console.log(arg.event.id);
+    console.log('Id Evento a borrar:',arg.event.id);
     this.calendarService.removeEvent(arg.event.id).subscribe(event => {
-      console.log('Event deleted successfully:', event);
+      console.log('Evento Borrado:', event);
     }, error => {
-      console.log('Error deleting event:', error);
+      console.log('Error al borrar evento:', error);
     });
   }
-
-
 
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`¿ ESTAS SEGURO QUE DESEAS ELIMINAR ESTE EVENTO ? '${clickInfo.event.title}'`)) {
@@ -119,7 +117,7 @@ export class CalendarioComponent {
       // clickInfo.event.remove();
       this.calendarService.removeEvent(clickInfo.event.id).subscribe({
         next: (data:any)=>{
-            console.log("evento borrado de la BD") 
+            console.log("evento borrado de la BD",data) 
           },
         error:(e)=> console.log(e)
         });

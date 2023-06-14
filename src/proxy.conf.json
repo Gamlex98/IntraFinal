@@ -1,0 +1,13 @@
+
+{
+    "/api/*": {
+      "target": "http://172.16.1.24:88",
+      "secure": false,
+      "pathRewrite":{
+        "^/api": ""
+      },
+      "changeOrigin": false,
+      "logLevel": "debug"
+    }
+  }
+  

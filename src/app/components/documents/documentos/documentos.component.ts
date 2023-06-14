@@ -172,13 +172,16 @@ export class DocumentosComponent implements OnInit ,AfterViewInit {
   } */
   
   downloadFile(url: string, nombre: string): void {
-    this.service.getNombre(nombre).subscribe((comunicado: any) => {
-      const nombreArchivo = comunicado[0].nombre;
-      const urlArchivo = comunicado[0].url;
+    this.service.getNombre(nombre).subscribe((documento: any) => {
+      const nombreArchivo = documento[0].nombre;
+      const urlArchivo = documento[0].url;
+      console.log('Data Api :',documento);
+      const urlParticionada = urlArchivo.substring(urlArchivo.indexOf("/documentos"));
+      
       const extension = urlArchivo.substring(urlArchivo.lastIndexOf('.') + 1);
       const nombreCompleto = `${nombreArchivo}.${extension}`;
 
-      this.http.get(urlArchivo, { responseType: 'blob' }).subscribe((archivo: any) => {
+      this.http.get(`/api${urlParticionada}`, { responseType: 'blob' }).subscribe((archivo: any) => {
         const blob = new Blob([archivo]); 
         const link = document.createElement('a'); 
         link.href = window.URL.createObjectURL(blob); 
