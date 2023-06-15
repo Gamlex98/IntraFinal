@@ -10,11 +10,11 @@
   <form (ngSubmit)="guardarEvento()">
     <div class="form-group">
       <label>Título:</label>
-      <input type="text" class="form-control" [(ngModel)]="titulo" name="titulo" required>
+      <input type="text" class="form-control" [(ngModel)]="tituloEvento" name="titulo" required>
     </div>
     <div class="form-group">
       <label>Fecha de inicio:</label>
-      <input type="datetime-local" class="form-control" [(ngModel)]="fechaInicio" name="fechaInicio" required>
+      <input type="datetime-local" class="form-control" [(ngModel)]="fechaInicial" name="fechaInicio" required>
     </div>
     <div class="form-group">
       <label>Fecha de fin:</label>

@@ -24,15 +24,15 @@
         </label>
       </div>
 
-      <h2 style="font-weight: bold;">Listado eventos ({{currentEvents.length}})</h2>
+      <h2 style="font-weight: bold;">Eventos para Hoy({{currentEvents.length}})</h2>
       <div class='demo-app-sidebar-section event-list'>
         <ul>
           <li *ngFor='let event of currentEvents' style="font-size: 13px;">
             <i style="color: blue;font-weight: bold;">{{event.title}}</i>
             <br>
-            <b> Start : {{event.startStr | date:'dd/MM/yyyy HH:mm:ss'}}</b>
+            <b> Start : {{event.startStr | date:'dd/MM/yyyy HH:mm'}}</b>
             <br>
-            <b> End : {{event.endStr | date:'dd/MM/yyyy HH:mm:ss' }}</b>
+            <b> End : {{event.endStr | date:'dd/MM/yyyy HH:mm' }}</b>
           </li>
         </ul>
       </div>
