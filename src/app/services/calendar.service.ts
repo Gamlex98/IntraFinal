@@ -13,13 +13,11 @@ export class CalendarService {
 
   constructor(private http: HttpClient) { }
 
-
   addEvent(event: EventModel): Observable<any> {
-    console.log("En el servicio de addEvent:")    
-    console.log(event.title);
-    console.log(event.start);
-    console.log(event.end);
-    
+    // console.log("En el servicio de addEvent:")    
+    // console.log(event.title);
+    // console.log(event.start);
+    // console.log(event.end);
     return this.http.post(`${this.url}/evento-calendarios`,
     {
       id: event.id,
@@ -40,11 +38,9 @@ export class CalendarService {
     );
   }
   
-
   removeEvent(id: string ): Observable<any> {
     return this.http.delete<any>(`${this.url}/evento-calendarios/${id}`)
   }
-
 
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

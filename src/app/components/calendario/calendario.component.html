@@ -1,48 +1,45 @@
 
-<h1 style="text-align: center; font-family: 'Courier New', Courier, monospace;">Calendario Fresmar</h1>
-
 <div class='demo-app'>
+  <div class='demo-app-sidebar'>
+    <div class='demo-app-sidebar-section'>
+      <h2 style="font-weight: bold;">INSTRUCCIONES DE USO</h2>
+      <ul>
+        <li> <p style="font-weight: bold;">Para agregar Eventos :</p> Selecciona un día del calendario y se solicitará agregar la información del Evento: titulo , fecha y hora </li>
+        <li> <p style="font-weight: bold;">Para eliminar Eventos :</p>Haz click sobre el nombre del Evento que quieras eliminar</li>
+      </ul>
+    </div>
 
-    <div class='demo-app-sidebar'>
-      <div class='demo-app-sidebar-section'>
-        <h2 style="font-weight: bold;">Instrucciones de uso !</h2>
-        <ul>
-          <li> <p style="font-weight: bold;">Para agregar Eventos :</p> Selecciona la fecha y se solicitará agregar el evento para el día seleccionado </li>
-          <li> <p style="font-weight: bold;">Para eliminar Eventos :</p>Haz click sobre el evento que quieras eliminar</li>
-        </ul>
-      </div>
-      <!-- <div class='demo-app-sidebar-section'>
-      </div -->
-      <div class='demo-app-sidebar-section'>
-        <label>
-          <input
-            type='checkbox'
-            [checked]='calendarOptions.weekends'
-            (change)='handleWeekendsToggle()'
+    <div class='demo-app-sidebar-section'>
+      <label>
+        <input
+          type='checkbox'
+          [checked]='calendarOptions.weekends'
+          (change)='handleWeekendsToggle()'
           />
           Modo semana completa
-        </label>
-      </div>
-
-      <h2 style="font-weight: bold;">Eventos para Hoy({{currentEvents.length}})</h2>
-      <div class='demo-app-sidebar-section event-list'>
-        <ul>
-          <li *ngFor='let event of currentEvents' style="font-size: 13px;">
-            <i style="color: blue;font-weight: bold;">{{event.title}}</i>
-            <br>
-            <b> Start : {{event.startStr | date:'dd/MM/yyyy HH:mm'}}</b>
-            <br>
-            <b> End : {{event.endStr | date:'dd/MM/yyyy HH:mm' }}</b>
-          </li>
-        </ul>
-      </div>
+      </label>
     </div>
-    <div class='demo-app-main'>
-      <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
-        <ng-template #eventContent let-arg>
-          <b>{{ arg.timeText }}</b>
-          <i>{{ arg.event.title }}</i>
-        </ng-template>
-      </full-calendar>
+    <h2 style="font-weight: bold;margin-top: 10px;">Eventos para Hoy({{currentEvents.length}})</h2>
+    <div class='demo-app-sidebar-section event-list'>
+      <ul>
+        <li *ngFor='let event of currentEvents' style="font-size: 13px;" [class.evento-vencido]="isEventExpired(event)">
+          <i style="color: blue;font-weight: bold;">{{event.title}}</i>
+          <br>
+          <b> Start : {{event.startStr | date:'dd/MM/yyyy HH:mm'}}</b>
+          <br>
+          <b> End : {{event.endStr | date:'dd/MM/yyyy HH:mm' }}</b>
+        </li>
+      </ul>
     </div>
   </div>
+
+  <div class='demo-app-main'>
+    <h1 style="text-align: center; font-family: 'Courier New', Courier, monospace;">Calendario Fresmar</h1>
+    <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
+      <ng-template #eventContent let-arg>
+        <b>{{ arg.timeText }}</b>
+        <i>{{ arg.event.title }}</i>
+      </ng-template>
+    </full-calendar>
+  </div>
+</div>

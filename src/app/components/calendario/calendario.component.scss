@@ -18,24 +18,29 @@ h2 {
   b { /* used for event dates/times */
     margin-right: 3px;
   }
+
+  .evento-vencido {
+    opacity: 0.2; /* Ajusta este valor según el nivel de desvanecimiento deseado */
+  }  
   
   .event-list {
-    max-height: 500px; /* Altura máxima de la lista de eventos */
+    max-height: 550px; /* Altura máxima de la lista de eventos */
     overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando la lista se desborda */
   }
 
   .demo-app {
     display: flex;
-    min-height: 100%;
+    height: 850px;
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
   }
   
   .demo-app-sidebar {
     width: 250px;
-    line-height: 1.5;
+    height: 854px;
+    line-height: 1.2;
     background: #eaf9ff;
-    border-right: 1px solid #d3e2e8;
+    border: 1px solid #d3e2e8;
   }
   
   .demo-app-sidebar-section {
@@ -44,7 +49,7 @@ h2 {
   
   .demo-app-main {
     flex-grow: 1;
-    padding: 3em;
+    padding: 0em;
   }
   
   .fc { /* the calendar root */

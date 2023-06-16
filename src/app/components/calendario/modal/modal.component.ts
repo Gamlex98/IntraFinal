@@ -18,7 +18,7 @@ export class ModalComponent implements OnInit{
   constructor(public modal: NgbActiveModal) {}
 
   ngOnInit(): void {
-    console.log('FechaModal:', this.fechaSeleccionada);
+    // console.log('FechaModal:', this.fechaSeleccionada);
   
     // Convertir fechaSeleccionada a un objeto Date
     this.fechaInicialDate = new Date(this.fechaSeleccionada);

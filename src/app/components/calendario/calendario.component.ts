@@ -1,6 +1,6 @@
-import { Component, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
-import { CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventAddArg, EventRemoveArg } from '@fullcalendar/core';
-import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
+import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
@@ -11,7 +11,6 @@ import { EventModel } from 'src/app/models/event.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
 import Swal from 'sweetalert2';
-import { style } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -53,7 +52,7 @@ export class CalendarioComponent {
   constructor( private changeDetector: ChangeDetectorRef, private calendarService: CalendarService, private modalService: NgbModal) {}
 
   ngOnInit() {
-    this.refreshEvents(); // Obtener eventos al iniciar el componente
+    this.refreshEvents(); // Obtener eventos al iniciar el componente y al agregar / eliminar
   }
 
   refreshEvents() {
@@ -64,22 +63,22 @@ export class CalendarioComponent {
 
   handleDateSelect(selectInfo: DateSelectArg) {
   this.fechaSeleccionada = selectInfo.startStr;
-  console.log(this.fechaSeleccionada);
+  // console.log(this.fechaSeleccionada);
 
   const modalRef = this.modalService.open(ModalComponent);
   modalRef.componentInstance.fechaSeleccionada = this.fechaSeleccionada; // Pasar la fecha seleccionada al modal
   modalRef.result.then((result) => {
     if (result) {
-      console.log('Result Modal:',result);
+      // console.log('Result Modal:',result);
       const { titulo, fechaStart, fechaEnd } = result;
       const calendarApi = selectInfo.view.calendar;
   
-      console.log('Título:', titulo);
-      console.log('Fecha de inicio:', fechaStart);
-      console.log('Fecha de fin:', fechaEnd);
+      // console.log('Título:', titulo);
+      // console.log('Fecha de inicio:', fechaStart);
+      // console.log('Fecha de fin:', fechaEnd);
   
       calendarApi.unselect(); // clear date selection
-  
+
       calendarApi.addEvent({
         id: createEventId(),
          title: titulo,
@@ -102,15 +101,8 @@ export class CalendarioComponent {
         timer: 1000
         });
       }
-    }, (reason) => {
-      console.log(reason);
     });
   }   
-
-
-  handleCalendarToggle() {
-    this.calendarVisible = !this.calendarVisible;
-  }
 
   handleWeekendsToggle() {
     const { calendarOptions } = this;
@@ -120,7 +112,7 @@ export class CalendarioComponent {
   handleEventClick(clickInfo: EventClickArg) {
     Swal.fire({
       title: `Estas seguro que deseas eliminar este evento? <span style="color: red; text-decoration: underline">${clickInfo.event.title}</span>`,
-      text: "No podras deshacer esta accion.",
+      text: "No podrás deshacer esta acción.",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -130,7 +122,7 @@ export class CalendarioComponent {
       if (result.isConfirmed) {
         this.calendarService.removeEvent(clickInfo.event.id).subscribe({
           next: (data:any)=>{
-              console.log("evento borrado de la BD",data);
+              console.log("Evento borrado de la BD",data);
               this.refreshEvents(); 
               Swal.fire({
                 position: 'center',
@@ -157,7 +149,9 @@ export class CalendarioComponent {
     })
   }
 
-  handleEvents(events: EventApi[]) {
+  // LISTADO GENERAL DE EVENTOS 
+
+  /* handleEvents(events: EventApi[]) {
     this.currentEvents = events.sort((a, b) => {
       // Ordenar por fecha de inicio en orden descendente
       const aStart = a.start?.getTime() || 0; // Valor predeterminado en caso de nulo
@@ -166,37 +160,50 @@ export class CalendarioComponent {
       return bStart - aStart;
     });
     this.changeDetector.detectChanges();
-  }
+  } */
 
-  //OBTENER EVENTOS DIA ACTUAL 
+  //LISTADO EVENTOS DIA ACTUAL 
   
-  /* handleEvents(events: EventApi[]) {
-    // Obtener la fecha actual
+  handleEvents(events: EventApi[]) {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
     const currentDay = currentDate.getDate();
+    const currentDateTime = currentDate.getTime();
   
-    // Filtrar los eventos por fecha
-    this.currentEvents = events.filter(event => {
+    const activeEvents = events.filter(event => {
       const eventStart = event.start?.getTime() || 0;
+      const eventEnd = event.end?.getTime() || 0;
       const eventYear = event.start?.getFullYear() || 0;
       const eventMonth = event.start?.getMonth() || 0;
       const eventDay = event.start?.getDate() || 0;
   
-      return eventYear === currentYear && eventMonth === currentMonth && eventDay === currentDay;
+      return eventYear === currentYear && eventMonth === currentMonth && eventDay === currentDay && eventEnd > currentDateTime;
     });
   
-    // Ordenar los eventos por fecha de inicio en orden ascendente
-    this.currentEvents.sort((a, b) => {
-      const aStart = a.start?.getTime() || 0;
-      const bStart = b.start?.getTime() || 0;
+    const expiredEvents = events.filter(event => {
+      const eventStart = event.start?.getTime() || 0;
+      const eventEnd = event.end?.getTime() || 0;
+      const eventYear = event.start?.getFullYear() || 0;
+      const eventMonth = event.start?.getMonth() || 0;
+      const eventDay = event.start?.getDate() || 0;
   
-      return aStart - bStart;
+      return eventYear === currentYear && eventMonth === currentMonth && eventDay === currentDay && eventStart < currentDateTime && eventEnd < currentDateTime;
     });
   
-    this.changeDetector.detectChanges();
-  } */
+    setTimeout(() => {
+      this.currentEvents = [...activeEvents, ...expiredEvents];
+    });
+  }
+  
+  
+  isEventExpired(event: EventApi): boolean {
+    const currentDateTime = new Date().getTime();
+    const eventEnd = event.end?.getTime() || 0;
+  
+    return eventEnd< currentDateTime;
+  }
+  
   
   //Graba en la base de datos el evento ingresado por el usuario
   grabarEventoBD(eventoGrabar: EventModel){
@@ -210,4 +217,3 @@ export class CalendarioComponent {
 }
 
 }
-
