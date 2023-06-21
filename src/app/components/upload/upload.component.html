@@ -30,72 +30,72 @@
 <h1 style="text-align: center; font-family: 'Courier New', Courier, monospace;"> Enviar Informacion a la BD </h1>
 
 <br>
-<form #documentForm="ngForm" (ngSubmit)="enviarInfo(documentForm)">
-  <div class="form-group">
-    <label for="nombre">Nombre :</label>
-    <input type="text" id="nombre" name="nombre" placeholder="Escribe el nombre para el documento" class="form-control" [(ngModel)]="documento.nombre" required>
-  </div>
-  <br>
-  <div class="form-group">
-    <label for="fecha">Fecha :</label>
-    <input type="date" id="fecha" name="fecha" class="form-control" style="width: 150px;" [(ngModel)]="documento.fecha" required>
-  </div>  
-
-  <br>
-  <div class="form-group">
-    <label for="area">Area:</label>
-    <select class="form-control" id="IdSeleccionarArea" [(ngModel)]="documento.area" name="area" required>
-      <option value="" disabled selected>Seleccione el Área...</option>
-      <option value="auditoria">Auditoría</option>
-      <option value="calidad">Calidad</option>
-      <option value="comercial">Comercial</option>
-      <option value="contabilidad">Contabilidad</option>
-      <option value="importaciones">Importaciones</option>
-      <option value="sig">Sistemas Integrados de Gestión</option>
-      <option value="talento_humano">Talento Humano</option>
-      <option value="tesoreria">Tesorería</option>
-      <option value="ti">Tecnologías de la Información</option>
-    </select>
-  </div>
-  
-  <br>
-  <div class="form-group">
-    <label for="archivo">Carpeta :</label>
-    <select class="form-control" (change)="onFolderSelected($event)">
-      <option value="" disabled selected>Seleccione la Carpeta...</option>
-      <option value="documentos/auditoria/">Auditoria</option>
-      <option value="documentos/calidad/">Calidad</option>
-      <option value="documentos/comercial/">Comercial</option>
-      <option value="documentos/contabilidad/">Contabilidad</option>
-      <option value="documentos/importaciones/">Importaciones</option>
-      <option value="documentos/sig/">Sistemas Integrados de Gestion</option>
-      <option value="documentos/talento_humano/">Talento Humano</option>
-      <option value="documentos/tesoreria/">Tesoreria</option>
-      <option value="documentos/ti/">Tecnologias de la Informacion</option>
-    </select>
-    <!-- <input type="file" (change)="onFileSelected($event)"> -->
-    <br>
-    <!-- <input type="file" id="archivo" name="archivo" class="form-control-file" (change)="onFileSelected($event)" required> -->
-    <div class="mb-3">
-      <input class="form-control" type="file" id="archivo" name="archivo" (change)="onFileSelected($event)" required>
+  <form #documentForm="ngForm" (ngSubmit)="enviarInfo(documentForm)">
+    <div class="form-group">
+      <label for="nombre">Nombre :</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Escribe el nombre para el documento" class="form-control" [(ngModel)]="documento.nombre" required>
     </div>
+    <br>
+    <div class="form-group">
+      <label for="fecha">Fecha :</label>
+      <input type="date" id="fecha" name="fecha" class="form-control" style="width: 150px;" [(ngModel)]="documento.fecha" required>
+    </div>  
+
+    <br>
+    <div class="form-group">
+      <label for="area">Area:</label>
+      <select class="form-control" id="IdSeleccionarArea" [(ngModel)]="documento.area" name="area" required>
+        <option value="" disabled selected>Seleccione el Área...</option>
+        <option value="auditoria">Auditoría</option>
+        <option value="calidad">Calidad</option>
+        <option value="comercial">Comercial</option>
+        <option value="contabilidad">Contabilidad</option>
+        <option value="importaciones">Importaciones</option>
+        <option value="sig">Sistemas Integrados de Gestión</option>
+        <option value="talento_humano">Talento Humano</option>
+        <option value="tesoreria">Tesorería</option>
+        <option value="ti">Tecnologías de la Información</option>
+      </select>
+    </div>
+    
+    <br>
+    <div class="form-group">
+      <label for="archivo">Carpeta :</label>
+      <select class="form-control" (change)="onFolderSelected($event)">
+        <option value="" disabled selected>Seleccione la Carpeta...</option>
+        <option value="documentos/auditoria/">Auditoria</option>
+        <option value="documentos/calidad/">Calidad</option>
+        <option value="documentos/comercial/">Comercial</option>
+        <option value="documentos/contabilidad/">Contabilidad</option>
+        <option value="documentos/importaciones/">Importaciones</option>
+        <option value="documentos/sig/">Sistemas Integrados de Gestion</option>
+        <option value="documentos/talento_humano/">Talento Humano</option>
+        <option value="documentos/tesoreria/">Tesoreria</option>
+        <option value="documentos/ti/">Tecnologias de la Informacion</option>
+      </select>
+      <!-- <input type="file" (change)="onFileSelected($event)"> -->
+      <br>
+      <!-- <input type="file" id="archivo" name="archivo" class="form-control-file" (change)="onFileSelected($event)" required> -->
+      <div class="mb-3">
+        <input class="form-control" type="file" id="archivo" name="archivo" (change)="onFileSelected($event)" required>
+      </div>
+    </div>
+    
+  <br>
+  <div class="form-group">
+    <label for="url">URL :</label>
+    <input type="text" id="url" name="url" placeholder="Url del archivo a enviar a la BD" class="form-control" [(ngModel)]="direccion.url" required >
   </div>
-  
-<br>
-<div class="form-group">
-  <label for="url">URL :</label>
-  <input type="text" id="url" name="url" placeholder="Url del archivo a enviar a la BD" class="form-control" [(ngModel)]="direccion.url" required >
-</div>
 
-<br>
-<!-- <button type="submit" class="btn btn-primary"> Cargar Información </button> -->
-<button type="submit" class="btn btn-primary" color="primary" [disabled]="enviando">
-  <span *ngIf="!enviando"> Enviar </span>
-  <span *ngIf="enviando"> Enviando... </span>
-</button>
+  <br>
+  <!-- <button type="submit" class="btn btn-primary"> Cargar Información </button> -->
+  <button type="submit" class="btn btn-primary" color="primary" [disabled]="enviando">
+    <span *ngIf="!enviando"> Enviar </span>
+    <span *ngIf="enviando"> Enviando... </span>
+  </button>
 
-<mat-progress-bar mode="determinate" [value]="porcentaje" style="margin-top: 20px;"></mat-progress-bar>
-<div *ngIf="!enviando && porcentaje === 100" class="letraEnvio">
-  Envío Exitoso
-</div>
-</form>
+  <mat-progress-bar mode="determinate" [value]="porcentaje" style="margin-top: 20px;"></mat-progress-bar>
+  <div *ngIf="!enviando && porcentaje === 100" class="letraEnvio">
+    Envío Exitoso
+  </div>
+  </form>

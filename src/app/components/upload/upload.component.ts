@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DocumentModel } from 'src/app/models/document.model';
 import { FileService } from 'src/app/services/file.service'; 
@@ -18,19 +18,19 @@ export class UploadComponent {
   direccion = {url: ""};
   rutaRelativa = "";
   total: number = 0;
-
   fileToUpload !: File;
   authenticated = false;
+  authComponente = false;
   sid = '';
-
   porcentaje: number = 0;
   enviando: boolean = false;
 
-  constructor ( private service:FileService, private http:HttpClient ) { }
+  authorizedUser = 'Gamlex98';
+  authorizedPassword = 'Hck9820';
+  showModal = false;
+  showComponent = false;
 
-  /* ngOnInit(): void {
-    this.fileInfos = this.service.getFiles();
-  } */
+  constructor ( private service:FileService, private http:HttpClient ) { }
 
   authenticate() {
     const usuario = 'Intranet';
@@ -165,5 +165,7 @@ export class UploadComponent {
     const input = event.target;
     input.style.width = input.value.length + 'ch';
   }
+  
 }
+
 

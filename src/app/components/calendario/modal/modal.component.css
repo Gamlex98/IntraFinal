@@ -1,6 +1,15 @@
 
+.container {
+    font-weight: bold;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    align-items: center;
+}
+
 .close {
     width: 30px;
     height: 30px;
 }
 
+.form-control {
+    width: 240px;
+}

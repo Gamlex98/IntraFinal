@@ -6,7 +6,8 @@ export class EventModel {
     title ?: string;
     start ?: any;  
     end ?: any;
-
+    // display : 'background';
+    // color : '#ff9f89';
 }
   
 

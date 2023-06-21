@@ -19,6 +19,11 @@ h2 {
     margin-right: 3px;
   }
 
+  .custom-button {
+    background-color: red;
+    color:blue
+}
+
   .evento-vencido {
     opacity: 0.2; /* Ajusta este valor según el nivel de desvanecimiento deseado */
   }  
@@ -39,7 +44,7 @@ h2 {
     width: 250px;
     height: 854px;
     line-height: 1.2;
-    background: #eaf9ff;
+    background: #f5f2d7;
     border: 1px solid #d3e2e8;
   }
   

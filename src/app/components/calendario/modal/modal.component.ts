@@ -18,7 +18,7 @@ export class ModalComponent implements OnInit{
   constructor(public modal: NgbActiveModal) {}
 
   ngOnInit(): void {
-    // console.log('FechaModal:', this.fechaSeleccionada);
+  // console.log('FechaModal:', this.fechaSeleccionada);
   
     // Convertir fechaSeleccionada a un objeto Date
     this.fechaInicialDate = new Date(this.fechaSeleccionada);
@@ -36,33 +36,34 @@ export class ModalComponent implements OnInit{
   }
   
   guardarEvento() {
-  const fechaActual = new Date();
-  fechaActual.setHours(0, 0, 0, 0); // Establecer la hora a 00:00:00
+    const fechaActual = new Date();
+    
+    const fechaInicial = new Date(this.fechaInicial);
+    
+    // console.log('Inicial :',fechaInicial);
+    // console.log('Actual :',fechaActual);
+    
+    if (fechaInicial < fechaActual) {
+      // Mostrar mensaje de error o realizar la acción correspondiente
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: `Fecha incorrecta !`,
+        text: 'Debes seleccionar una fecha igual o posterior a la actual!',
+        showConfirmButton: true,
+        confirmButtonText: 'Entendido'
+      });
+      console.log("Error: La fecha de inicio debe ser igual o posterior al día actual.");
+      return;
+    };
   
-  const fechaInicial = new Date(this.fechaInicialDate);
-  fechaInicial.setHours(0, 0, 0, 0); // Establecer la hora a 00:00:00
-  
-  if (fechaInicial < fechaActual) {
-    // Mostrar mensaje de error o realizar la acción correspondiente
-    Swal.fire({
-      position: 'center',
-      icon: 'error',
-      title: `Fecha incorrecta !`,
-      text: 'Debes seleccionar una fecha igual o posterior a la actual!',
-      showConfirmButton: false,
-      timer: 1000
-    });
-    console.log("Error: La fecha de inicio debe ser igual o posterior al día actual.");
-    return;
+    const evento = {
+      titulo: this.tituloEvento,
+      fechaStart: new Date(this.fechaInicial),
+      fechaEnd: new Date(this.fechaFin)
+    };
+
+    this.modal.close(evento);
   }
-
-  const evento = {
-    titulo: this.tituloEvento,
-    fechaStart: new Date(this.fechaInicial),
-    fechaEnd: new Date(this.fechaFin)
-  };
-  this.modal.close(evento);
-}
-
 }
 
