@@ -22,11 +22,18 @@ h2 {
   .custom-button {
     background-color: red;
     color:blue
-}
+  }
+
+  .evento-ejecutandose {
+    color: blue;
+    font-weight: bold;
+  }
 
   .evento-vencido {
-    opacity: 0.2; /* Ajusta este valor según el nivel de desvanecimiento deseado */
-  }  
+    opacity: 0.2;
+  }
+
+
   
   .event-list {
     max-height: 550px; /* Altura máxima de la lista de eventos */

@@ -172,7 +172,6 @@ export class CalendarioComponent implements OnInit {
       }
     });
   }
-  
 
   handleEvents(events: EventApi[]) {
     const currentDate = new Date();
@@ -225,6 +224,22 @@ export class CalendarioComponent implements OnInit {
     return eventEnd < currentDateTime;
   }
 
+  isEventRunning(event: EventApi): boolean {
+    const currentDateTime = new Date().getTime();
+    const eventStart = event.start?.getTime() || 0;
+    const eventEnd = event.end?.getTime() || 0;
+  
+    return eventStart <= currentDateTime && currentDateTime <= eventEnd;
+  }
+  
+  isEventScheduled(event: EventApi): boolean {
+    const currentDateTime = new Date().getTime();
+    const eventStart = event.start?.getTime() || 0;
+    const eventEnd = event.end?.getTime() || 0;
+  
+    return currentDateTime < eventStart;
+  }
+  
   handleWeekendsToggle() {
     const { calendarOptions } = this;
     calendarOptions.weekends = !calendarOptions.weekends;
@@ -243,5 +258,5 @@ export class CalendarioComponent implements OnInit {
 
   showDialog() {
     this.visible = true;
-}
+  }
 }

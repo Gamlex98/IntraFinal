@@ -4,6 +4,7 @@ import { DocumentModel } from 'src/app/models/document.model';
 import { FileService } from 'src/app/services/file.service'; 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { logoModel } from 'src/app/models/logo.model';
 
 @Component({
   selector: 'app-upload',
@@ -116,22 +117,67 @@ export class UploadComponent {
     });
   }
   
-  enviarInfo(form: NgForm){
+  enviarInfo(form: NgForm) {
+    const tipo = form.value.tipo;
+    const documento: DocumentModel = {
+      tipo:form.value.tipo,
+      nombre: form.value.nombre,
+      fecha: form.value.fecha,
+      area: form.value.area,
+      url: form.value.url,
+    } ;
+
+    const logo: logoModel = {
+      nombre: form.value.nombre,
+      url: form.value.url
+    } ;
+    
     if(form.valid) {
-      const documento: DocumentModel = {
-        // id: form.value.id,
-        nombre: form.value.nombre,
-        fecha: form.value.fecha,
-        area: form.value.area,
-        url: form.value.url
-      } ;
-      this.service.addDocumentos(documento).subscribe({
-        next: (data:any)=>{
-          console.log("informacion guardada en la base de datos");
-        },
-        error:(e)=> console.log(e)
-      });
-      this.progressBar();
+      switch (tipo) {
+        case 'documento':
+          console.log('Tipo Select:',tipo);
+          // Llamar al servicio addDocumentos
+          this.service.addDocumentos(documento).subscribe({
+            next: (data: any) => {
+              console.log("informacion guardada en la base de datos");
+              this.progressBar();
+            },
+            error: (e) => console.log(e)
+          });
+          break;
+        case 'formato':
+          // Llamar al servicio addFormatos
+          this.service.addFormatos(documento).subscribe({
+            next: (data: any) => {
+              console.log("informacion guardada en la base de datos");
+              this.progressBar();
+            },
+            error: (e) => console.log(e)
+          });
+          break;
+        case 'manual':
+          // Llamar al servicio addManuales
+          this.service.addManuales(documento).subscribe({
+            next: (data: any) => {
+              console.log("informacion guardada en la base de datos");
+              this.progressBar();
+            },
+            error: (e) => console.log(e)
+          });
+          break;
+
+          case 'Logo':
+          // Llamar al servicio addManuales
+          this.service.addLogos(logo).subscribe({
+            next: (data: any) => {
+              console.log("informacion guardada en la base de datos");
+              this.progressBar();
+            },
+            error: (e) => console.log(e)
+          });
+          break;
+      }
+      
     } else {
       Swal.fire({
         position: 'center',

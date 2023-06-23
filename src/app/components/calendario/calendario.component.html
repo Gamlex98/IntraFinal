@@ -1,7 +1,7 @@
 <div class='demo-app'>
   <div class='demo-app-sidebar'>
     <div class='demo-app-sidebar-section'>
-      <p-button (click)="showDialog()" icon="pi pi-envelope" label="Instrucciones de Uso" styleClass="p-button-primary"></p-button>
+      <!-- <p-button (click)="showDialog()" icon="pi pi-envelope" label="Instrucciones de Uso" styleClass="p-button-primary"></p-button>
       <p-dialog header="Header" [(visible)]="visible" [style]="{ width: '50vw' }">
         <ng-template pTemplate="header">
           <span class="text-xl font-bold">Instrucciones de uso Calendario Fresmar</span>
@@ -12,8 +12,9 @@
         <ng-template pTemplate="footer">
           <p-button icon="pi pi-check" (click)="visible = false" label="Ok" styleClass="p-button-text"></p-button>
         </ng-template>
-      </p-dialog>
+      </p-dialog> -->
       <ul>
+        <P style="font-weight: bold;">INSTRUCCIONES DE USO</P>
         <li> <p style="font-weight: bold;">Para agregar Eventos :</p> Selecciona un día del calendario y agrega la información del Evento: título, fecha y hora </li>
         <li> <p style="font-weight: bold;">Para eliminar Eventos :</p> Haz click izquierdo sobre el nombre del Evento que quieras eliminar</li>
       </ul>
@@ -29,15 +30,15 @@
           Modo semana completa
       </label>
     </div>
-    <h2 style="font-weight: bold;margin-top: 10px;margin-left: 10px;">Eventos para Hoy :({{currentEvents.length}})</h2>
+    <h2 style="font-weight: bold;margin-top: 10px;margin-left: 10px;">Eventos para Hoy :({{ currentEvents.length }})</h2>
     <div class='demo-app-sidebar-section event-list'>
       <ul>
         <li *ngFor='let event of currentEvents' style="font-size: 13px;" [class.evento-vencido]="isEventExpired(event)">
-          <i style="color: blue;font-weight: bold;font-size: 15px;">{{event.title}}</i>
+          <i [ngClass]="{ 'evento-ejecutandose': isEventRunning(event)}" style="font-weight: bold;">{{ event.title }}</i>
           <br>
-          <b> Inicio : {{event.startStr | date:'dd/MM/yyyy HH:mm'}}</b>
+          <b> Inicio : {{ event.startStr | date:'dd/MM/yyyy HH:mm' }}</b>
           <br>
-          <b> Final : {{event.endStr | date:'dd/MM/yyyy HH:mm' }}</b>
+          <b> Final : {{ event.endStr | date:'dd/MM/yyyy HH:mm' }}</b>
         </li>
       </ul>
     </div>

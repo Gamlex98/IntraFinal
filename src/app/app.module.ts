@@ -94,7 +94,8 @@ import { ModalComponent } from './components/calendario/modal/modal.component';
     InputTextModule,
     CalendarModule,
     MatProgressBarModule,
-    NgbModule    
+    NgbModule
+  
   ],
   providers: [Validators, 
             { provide: HAMMER_GESTURE_CONFIG, useClass: LyHammerGestureConfig }, [ LyTheme2 ],
