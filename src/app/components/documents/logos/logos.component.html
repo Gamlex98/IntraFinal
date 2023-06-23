@@ -1,8 +1,17 @@
-<h1 style="text-align: center; font-family: 'Courier New', Courier, monospace;">Logos Fresmar </h1>
 
-<div id="mi-contenedor"></div>
-<p> Nombre archivo = {{nombre}} </p>
-<button (click)="downloadFile(logoUrl)">Descargar Logo</button>
+<h1 class="titulo">Logos Fresmar</h1>
 
-
-
+<div id="mi-contenedor">
+  <div *ngFor="let logo of logos" class="imagen-container">
+    <div class="imagen">
+      <img [src]="logo.url" [alt]="logo.nombre" (click)="logo.url && downloadFile(logo.url)">
+      <div class="overlay">
+        <div class="nombre-imagen">{{ logo.nombre }}</div>
+        <button mat-flat-button color="primary" class="descargar" (click)="logo.url && downloadFile(logo.url)">
+          <mat-icon class="icono">cloud_download</mat-icon>
+          Descargar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

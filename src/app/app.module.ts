@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +46,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './components/calendario/modal/modal.component';
 
 @NgModule({
+
   declarations: [
     AppComponent,
     NavVarComponent,
@@ -95,8 +96,10 @@ import { ModalComponent } from './components/calendario/modal/modal.component';
     CalendarModule,
     MatProgressBarModule,
     NgbModule
-  
   ],
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   providers: [Validators, 
             { provide: HAMMER_GESTURE_CONFIG, useClass: LyHammerGestureConfig }, [ LyTheme2 ],
             [ StyleRenderer ],

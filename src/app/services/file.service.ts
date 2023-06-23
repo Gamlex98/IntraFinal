@@ -127,13 +127,5 @@ export class FileService {
   getLogos (): Observable<any> {
     return this.http.get (`${this.urlLoopback}/logos`)
   }
-
-  getUrlLogos(url: string): Observable<any> {
-    return this.http.get(`${this.urlLoopback}/logos?filter[where][url]=${url}`);
-  }
-
-  getNombreLogos (nombre: string): Observable<any> {
-    return this.http.get(`${this.urlLoopback}/logos?filter[where][nombre]=${nombre}`);
-  }
-
+  
 }
