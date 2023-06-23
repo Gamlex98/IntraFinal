@@ -1,6 +1,6 @@
 
 .sidenav {
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     background: #079b02;
     transition: all .5s ease;
@@ -60,6 +60,9 @@
 }
 
 .sidenav-nav {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
     list-style: none;
     padding: 0.938rem;
     margin: 0;
@@ -133,6 +136,9 @@
 }
 
 .sublevel-nav {
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
     list-style: none;
     margin-left: 10px;
 

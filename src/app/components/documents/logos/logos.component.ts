@@ -56,4 +56,7 @@ export class LogosComponent implements OnInit {
     return logo?.nombre ?? '';
   }
 
+  esUltimoDeFila(index: number): boolean {
+    return (index + 1) % 3 === 0;
+  }
 }

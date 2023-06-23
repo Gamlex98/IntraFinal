@@ -19,22 +19,40 @@ h2 {
     margin-right: 3px;
   }
 
-  .custom-button {
-    background-color: red;
-    color:blue
+  .letraElegante {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #555;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
 
+  .titulo {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #555;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+  }
   .evento-ejecutandose {
     color: blue;
     font-weight: bold;
+    text-transform: uppercase;
+    box-sizing: border-box;
+  }
+
+  .evento-ejecucion{
+    box-shadow: 0.063rem 0 1.25rem 0 #a2a3a5;
   }
 
   .evento-vencido {
     opacity: 0.2;
   }
 
-
-  
   .event-list {
     max-height: 550px; /* Altura máxima de la lista de eventos */
     overflow-y: auto; /* Agrega una barra de desplazamiento vertical cuando la lista se desborda */
@@ -51,12 +69,12 @@ h2 {
     width: 250px;
     height: 854px;
     line-height: 1.2;
-    background: #f5f2d7;
+    background: #f3f1e5;
     border: 1px solid #d3e2e8;
   }
   
   .demo-app-sidebar-section {
-    padding: 0.5em;
+    margin-bottom: 10px;
   }
   
   .demo-app-main {

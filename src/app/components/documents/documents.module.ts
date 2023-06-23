@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { ImageModule } from 'primeng/image';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatSelectModule,
     ImageModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ]
 })
 export class DocumentModule { }

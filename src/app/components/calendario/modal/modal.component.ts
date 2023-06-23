@@ -37,13 +37,13 @@ export class ModalComponent implements OnInit{
   
   guardarEvento() {
     const fechaActual = new Date();
-    
     const fechaInicial = new Date(this.fechaInicial);
+    const fechaFinal = new Date(this.fechaFin);
     
     // console.log('Inicial :',fechaInicial);
     // console.log('Actual :',fechaActual);
     
-    if (fechaInicial < fechaActual) {
+    if (fechaInicial < fechaActual || fechaFinal < fechaInicial) {
       // Mostrar mensaje de error o realizar la acción correspondiente
       Swal.fire({
         position: 'center',

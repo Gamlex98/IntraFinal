@@ -2,16 +2,17 @@
 <h1 class="titulo">Logos Fresmar</h1>
 
 <div id="mi-contenedor">
-  <div *ngFor="let logo of logos" class="imagen-container">
-    <div class="imagen">
+  <div *ngFor="let logo of logos; let i = index" [ngClass]="{ 'imagen-container-row': esUltimoDeFila(i) }" class="imagen-container mat-elevation-z4">
+    <mat-card>
       <img [src]="logo.url" [alt]="logo.nombre" (click)="logo.url && downloadFile(logo.url)">
+      <div class="nombre-imagen">{{ logo.nombre }}</div>
       <div class="overlay">
-        <div class="nombre-imagen">{{ logo.nombre }}</div>
+        <div class="nombre-imagen2">{{ logo.nombre }}</div>
         <button mat-flat-button color="primary" class="descargar" (click)="logo.url && downloadFile(logo.url)">
           <mat-icon class="icono">cloud_download</mat-icon>
           Descargar
         </button>
       </div>
-    </div>
+    </mat-card>
   </div>
 </div>

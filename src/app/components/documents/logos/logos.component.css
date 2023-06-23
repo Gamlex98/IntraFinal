@@ -1,7 +1,15 @@
-.titulo {
+  
+  .titulo {
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
     margin-bottom: 20px;
+    color: #555;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
   }
   
   #mi-contenedor {
@@ -9,11 +17,17 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .imagen-container-row {
+    display: flex;
+    justify-content: space-between;
+  }
   
   .imagen-container {
-    width: 33.33%;
-    padding: 10px;
-    box-sizing: border-box;
+    width: 26%;
+    margin: 20px;
+    padding: 50px;
+    box-shadow: 0px 2px 20px rgba(7, 7, 7, 0.2);
   }
   
   .imagen {
@@ -49,6 +63,18 @@
   }
   
   .nombre-imagen {
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .nombre-imagen2 {
     font-size: 16px;
     font-weight: bold;
     color: #fff;

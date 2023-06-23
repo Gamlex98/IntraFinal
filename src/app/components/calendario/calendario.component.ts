@@ -56,6 +56,7 @@ export class CalendarioComponent implements OnInit {
     this.refreshEvents();
   }
 
+  //Refrescar los Eventos disponibles en la BD
   refreshEvents() {
     this.calendarService.getEvents().subscribe((events: EventModel[]) => {
       this.calendarOptions.events = events;
@@ -63,6 +64,7 @@ export class CalendarioComponent implements OnInit {
     });
   }
 
+  // Seleccionar dia y agregar Evento usando Modal
   handleDateSelect(selectInfo: DateSelectArg) {
     this.fechaSeleccionada = selectInfo.startStr;
 
@@ -109,70 +111,85 @@ export class CalendarioComponent implements OnInit {
     });
   }
   
+  //Eliminar eventos
   handleEventClick(clickInfo: EventClickArg) {
-    //Comparamos la hora actual con la hora del evento seleccionado para restringir la eliminacion.
+    // Comparamos la hora actual con la hora del evento seleccionado para restringir la eliminación.
     this.fechaSeleccionada = clickInfo.event.startStr;
-    // console.log('Aqui :',this.fechaSeleccionada);
-
     const actualDate = new Date();
-
-    this.fechaEvento= new Date(this.fechaSeleccionada);
-    
-    console.log('fechaActual :',actualDate);
-    console.log('fechaEvento :',this.fechaEvento);
-
+    this.fechaEvento = new Date(this.fechaSeleccionada);
+  
+    console.log('fechaActual:', actualDate);
+    console.log('fechaEvento:', this.fechaEvento);
+  
+    let allowDeletion = true;
+  
     if (actualDate > this.fechaEvento) {
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'No se puede eliminar el evento',
-        text: 'Este evento ya ha pasado y no se puede eliminar.',
+        title: `No se puede eliminar el evento : <span style="color: blue; text-decoration: underline">${clickInfo.event.title}</span>`,
+        text: `Este evento ha vencido y no se puede eliminar.`,
         showConfirmButton: true,
         confirmButtonText: 'Entendido'
       });
-      return;
+  
+      allowDeletion = false;
     }
   
-    // si pasamos el filtro anterior se ejecuta el proceso para eliminar 
-    Swal.fire({
-      title: `¿Estás seguro de que deseas eliminar este evento? <span style="color: red; text-decoration: underline">${clickInfo.event.title}</span>`,
-      text: "No podrás deshacer esta acción.",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.calendarService.removeEvent(clickInfo.event.id).subscribe({
-          next: (data: any) => {
-            console.log("Evento borrado de la BD", data);
-            this.refreshEvents();
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: '¡Evento eliminado exitosamente!',
-              showConfirmButton: false,
-              timer: 1000
-            });
-          },
-          error: (e) => console.log(e)
-        });
-        //
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Cancelado',
-          text: 'Tu evento está seguro :)',
-          showConfirmButton: false,
-          timer: 1000
-        });
-      }
-    });
+    if (this.isEventRunning(clickInfo.event)) {
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: `Este evento: <span style="color: blue; text-decoration: underline">${clickInfo.event.title}</span> está en ejecución`,
+        text: 'No se puede eliminar un evento que está en curso.',
+        showConfirmButton: true,
+        confirmButtonText: 'Aceptar'
+      });
+  
+      allowDeletion = false;
+    }
+  
+    if (allowDeletion) {
+      Swal.fire({
+        title: `¿Estás seguro de que deseas eliminar este evento? <span style="color: blue; text-decoration: underline">${clickInfo.event.title}</span>`,
+        text: "No podrás deshacer esta acción.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.calendarService.removeEvent(clickInfo.event.id).subscribe({
+            next: (data: any) => {
+              console.log("Evento borrado de la BD", data);
+              this.refreshEvents();
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '¡Evento eliminado exitosamente!',
+                showConfirmButton: false,
+                timer: 1000
+              });
+            },
+            error: (e) => console.log(e)
+          });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Cancelado',
+            text: 'Tu evento está seguro :)',
+            showConfirmButton: false,
+            timer: 1000
+          });
+        }
+      });
+    }
   }
 
+  //Array Eventos Dia Actual / Catalogados como activos / vencidos
   handleEvents(events: EventApi[]) {
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
@@ -217,6 +234,7 @@ export class CalendarioComponent implements OnInit {
     });
   }
 
+  //Eventos Vencidos 
   isEventExpired(event: EventApi): boolean {
     const currentDateTime = new Date().getTime();
     const eventEnd = event.end?.getTime() || 0;
@@ -224,6 +242,7 @@ export class CalendarioComponent implements OnInit {
     return eventEnd < currentDateTime;
   }
 
+  //Eventos en Ejecucion 
   isEventRunning(event: EventApi): boolean {
     const currentDateTime = new Date().getTime();
     const eventStart = event.start?.getTime() || 0;
@@ -232,6 +251,7 @@ export class CalendarioComponent implements OnInit {
     return eventStart <= currentDateTime && currentDateTime <= eventEnd;
   }
   
+  //Eventos Programados
   isEventScheduled(event: EventApi): boolean {
     const currentDateTime = new Date().getTime();
     const eventStart = event.start?.getTime() || 0;
@@ -240,11 +260,13 @@ export class CalendarioComponent implements OnInit {
     return currentDateTime < eventStart;
   }
   
+  // Vista completa Calendario
   handleWeekendsToggle() {
     const { calendarOptions } = this;
     calendarOptions.weekends = !calendarOptions.weekends;
-  }
+  } 
 
+  //Guardar informacion en la BD
   grabarEventoBD(eventoGrabar: EventModel) {
     this.calendarService.addEvent(eventoGrabar).subscribe({
       next: (data: any) => {
@@ -256,7 +278,4 @@ export class CalendarioComponent implements OnInit {
     });
   }
 
-  showDialog() {
-    this.visible = true;
-  }
 }

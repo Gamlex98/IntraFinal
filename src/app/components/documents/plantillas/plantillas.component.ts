@@ -39,9 +39,10 @@ export class PlantillasComponent implements OnInit, AfterViewInit {
   constructor(private service: FileService, private http : HttpClient) {}
 
   ngOnInit() {
-    this.service.getDocumentosPorAreaFormatos('talento_humano').subscribe((documentos: DocumentosTalento_Humano[]) => {
-      this.datosTalento_Humano.data = documentos;
-      this.datosContabilidad.paginator = this.paginator;
+    this.tablaSeleccionada = this.datosCalidad;
+    this.service.getDocumentosPorAreaFormatos('calidad').subscribe((documentos: DocumentosCalidad[]) => {
+      this.tablaSeleccionada.data= documentos;
+      this.datosCalidad.paginator = this.paginator;
     });
   }
 
@@ -155,7 +156,7 @@ export class PlantillasComponent implements OnInit, AfterViewInit {
       const nombreArchivo = documento[0].nombre;
       const urlArchivo = documento[0].url;
       console.log('Data Api :',documento);
-      const urlParticionada = urlArchivo.substring(urlArchivo.indexOf("/documentos"));
+      const urlParticionada = urlArchivo.substring(urlArchivo.indexOf("/formatos"));
       
       const extension = urlArchivo.substring(urlArchivo.lastIndexOf('.') + 1);
       const nombreCompleto = `${nombreArchivo}.${extension}`;

@@ -1,5 +1,5 @@
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule,DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -95,7 +95,8 @@ import { ModalComponent } from './components/calendario/modal/modal.component';
     InputTextModule,
     CalendarModule,
     MatProgressBarModule,
-    NgbModule
+    NgbModule,
+    DatePipe
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
