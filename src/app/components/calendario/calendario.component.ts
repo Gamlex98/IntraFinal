@@ -231,6 +231,7 @@ export class CalendarioComponent implements OnInit {
 
     setTimeout(() => {
       this.currentEvents = [...activeEvents, ...expiredEvents];
+      this.refreshEvents();
     });
   }
 
@@ -252,7 +253,7 @@ export class CalendarioComponent implements OnInit {
   }
   
   //Eventos Programados
-  isEventScheduled(event: EventApi): boolean {
+  isEventProgram(event: EventApi): boolean {
     const currentDateTime = new Date().getTime();
     const eventStart = event.start?.getTime() || 0;
     const eventEnd = event.end?.getTime() || 0;
