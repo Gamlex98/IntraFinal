@@ -11,3 +11,8 @@
     border-bottom: 2px solid #ccc;
     padding-bottom: 10px;
 }
+
+.descargar-btn {
+    margin-left: 40px;
+    cursor: pointer;
+  }
