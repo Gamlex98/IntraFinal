@@ -38,15 +38,24 @@
 
                         "node_modules/@popperjs/core/dist/umd/popper.min.js",
         
-                        "node_modules/bootstrap/dist/js/bootstrap.min.js"]
+                        "node_modules/bootstrap/dist/js/bootstrap.min.js" ,
+
+                        "src/assets/js/sticky-navigation.js",
+
+                        "src/assets/js/content.Scrolling.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "sweetalert2",
+              "jquery"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

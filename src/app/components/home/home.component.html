@@ -1,29 +1,52 @@
-
-<div class="counter-wrapper">
-    <a title="contador de visitas" style="display: inline-block;">
-        <img src="https://counter10.optistats.ovh/private/contadorvisitasgratis.php?c=uadp3jp3qr783q4f5cnt1b9d1ewu85y8" border="0" title="contador de visitas" alt="contador de visitas">
-    </a>
-</div>
-
+<!-- Hero -->
 <app-info-complement></app-info-complement>
-<br>
-<h1 style="text-align: center; font-family: 'Courier New', Courier, monospace;"> Bienvenido a Fresmar </h1>
-<div class="card">
-    <div class="card-head"> Titulo del contenido </div>
-    <div class="card-body">
-         Aqui va el contenido de la pantalla principal Home
+
+<section class="et-hero-tabs">
+    <h1>Página Principal Fresmar</h1>
+    <h3>Welcome to the Jungle !!</h3>
+    <div class="et-hero-tabs-container">
+        <a class="et-hero-tab" href="#tab-Principal">Principal</a>
+        <a class="et-hero-tab" href="#tab-Carousel">Carousel</a>
+        <a class="et-hero-tab" href="#tab-Acordion">Acordion</a>
+        <a class="et-hero-tab" href="#tab-Angular">Angular</a>
+        <a class="et-hero-tab" href="#tab-AppCard">AppCard</a>
+        <span class="et-hero-tab-slider"></span>
     </div>
-</div>
+</section>
+
 <br>
 
-<carousel></carousel>
-<br><br>
+<!-- Main -->
+<main class="et-main">
 
-<accordion-template></accordion-template>
-<br><br>
+    <section class="et-slide" id="tab-Principal">
+        <h1> Titulo Información </h1>
+        <div class="card">
+            <div class="card-head"> Título del contenido </div>
+            <div class="card-body">
+                Aquí va el contenido de la pantalla principal Home
+            </div>
+        </div>
+    </section>
 
-<app-card></app-card>
+    <section class="et-slide" id="tab-Carousel">
+        <h1> Carousel </h1>
+        <carousel></carousel>
+    </section>
 
+    <section class="et-slide" id="tab-Acordion">
+        <h1>Accordion </h1>
+        <accordion-template></accordion-template>
+    </section>
 
+    <section class="et-slide" id="tab-Angular">
+        <h1>Angular</h1>
+        <h3>something about angular</h3>
+    </section>
 
+    <section class="et-slide" id="tab-AppCard">
+        <h1> App Card </h1>
+        <app-card></app-card>
+    </section>
 
+</main>
