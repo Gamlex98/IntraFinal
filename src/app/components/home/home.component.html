@@ -2,14 +2,15 @@
 <app-info-complement></app-info-complement>
 
 <section class="et-hero-tabs">
-    <h1>Página Principal Fresmar</h1>
-    <h3>Welcome to the Jungle !!</h3>
+    <h1 style="margin-top: 10px;">Bienvenido a Intrafres</h1>
+    <h3>Trabajamos con perseverancia para prestarle un servicio excelente.</h3>
+    <h3>Gracias por creer y confiar en nosotros !!</h3>
     <div class="et-hero-tabs-container">
         <a class="et-hero-tab" href="#tab-Principal">Principal</a>
-        <a class="et-hero-tab" href="#tab-Carousel">Carousel</a>
         <a class="et-hero-tab" href="#tab-Acordion">Acordion</a>
-        <a class="et-hero-tab" href="#tab-Angular">Angular</a>
-        <a class="et-hero-tab" href="#tab-AppCard">AppCard</a>
+        <a class="et-hero-tab" href="#tab-Copaso">Copass</a>
+        <a class="et-hero-tab" href="#tab-Eventos">Destacados</a>
+        <a class="et-hero-tab" href="#tab-Info">Acerda de</a>
         <span class="et-hero-tab-slider"></span>
     </div>
 </section>
@@ -20,32 +21,33 @@
 <main class="et-main">
 
     <section class="et-slide" id="tab-Principal">
-        <h1> Titulo Información </h1>
-        <div class="card">
-            <div class="card-head"> Título del contenido </div>
-            <div class="card-body">
-                Aquí va el contenido de la pantalla principal Home
-            </div>
-        </div>
-    </section>
-
-    <section class="et-slide" id="tab-Carousel">
-        <h1> Carousel </h1>
-        <carousel></carousel>
+        <br>
+        <h1> Informacion de Interés </h1>
+        <app-informacion></app-informacion>
     </section>
 
     <section class="et-slide" id="tab-Acordion">
+        <br>
         <h1>Accordion </h1>
         <accordion-template></accordion-template>
     </section>
 
-    <section class="et-slide" id="tab-Angular">
-        <h1>Angular</h1>
-        <h3>something about angular</h3>
+    <section class="et-slide" id="tab-Copaso">
+        <h1> Copass </h1>
+        <br>
+        <app-copaso></app-copaso>
     </section>
 
-    <section class="et-slide" id="tab-AppCard">
-        <h1> App Card </h1>
+    <section class="et-slide" id="tab-Eventos">
+        <br>
+        <h1> Eventos realizados </h1>
+        <br><br>
+        <app-carousel></app-carousel>
+    </section>
+
+    <section class="et-slide-info" id="tab-Info">
+        <h1>Información de Interés</h1>
+        <br>
         <app-card></app-card>
     </section>
 

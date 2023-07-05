@@ -1,65 +1,117 @@
-
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { StyleRenderer, lyl } from '@alyle/ui';
-
-const STYLES = () => {
-  return {
-    carousel: () => lyl `{
-      margin: auto
-      // responsive
-      max-width: 750px
-      height: 50vh
-      min-height: 220px
-      max-height: 320px
-    }`,
-    carouselItem: () => lyl `{
-      display: flex
-      text-align: center
-      justify-content: flex-end
-      align-items: center
-      height: 100%
-      flex-direction: column
-      padding: 1em 1em 48px
-      box-sizing: border-box
-      color: #fff
-      &:nth-child(3) {
-        color: #2b2b2b
-      }
-    }`
-  };
-};
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'carousel',
+  selector: 'app-carousel',
   templateUrl: './carousel.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false,
-  providers: [
-    StyleRenderer
-  ]
+  styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent {
+export class CarouselComponent implements OnInit {
+  @ViewChild('carousel', { static: true }) carouselRef!: ElementRef;
+  @ViewChild('slides', { static: true }) slidesRef!: ElementRef;
 
-  readonly classes = this.sRenderer.renderSheet(STYLES);
-  items = [
-    {
-      title: 'Mountains',
-      img: 'https://firebasestorage.googleapis.com/v0/b/alyle-ui.appspot.com/o/img%2F' +
-      'Mountains-Blue.jpg?alt=media&token=d04f0279-79c6-4752-8b5a-cccd73720243'
-    },
-    {
-      title: 'Four Lakes, Queshuachaca',
-      img: 'https://firebasestorage.googleapis.com/v0/b/head-expeditions.appspot.com/o/img%2F' +
-      'files%2F61028703-1476458588-5a289afc-59e8-4a8d-1dea-369e-570b-cfb2.jpg?alt=media&token=ceaf31b5-2b87-438b-b0d1-e4cc4f8603a2'
-    },
-    {
-      title: 'Mountains',
-      img: 'https://firebasestorage.googleapis.com/v0/b/alyle-ui.appspot.com/o/img%2F' +
-          'mads-schmidt-rasmussen-567063-unsplash.jpg?alt=media&token=5acdfbb2-7eff-4879-b7d0-a441826d88ae'
+  carousel!: HTMLElement;
+  slides!: HTMLElement;
+  dots!: NodeListOf<Element>;
+
+  slideCount!: number;
+  activeIndex!: number;
+
+  autoPlayTimer!: any;
+  canAutoPlay!: boolean;
+
+  isMouseOverImage: boolean = false;
+  
+  ngOnInit() {
+    this.carousel = this.carouselRef.nativeElement as HTMLElement;
+    this.slides = this.slidesRef.nativeElement as HTMLElement;
+    this.dots = this.carousel.querySelectorAll('.dot a');
+    this.slideCount = this.dots.length;
+    this.activeIndex = 0;
+
+    this.setActiveIndex(this.activeIndex);
+    this.autoPlay();
+  }
+
+  pauseAutoPlay() {
+    if (this.isMouseOverImage) return;
+    this.isMouseOverImage = true;
+    clearInterval(this.autoPlayTimer);
+  }
+
+  resumeAutoPlay() {
+    if (!this.isMouseOverImage) return;
+    this.isMouseOverImage = false;
+    this.autoPlay();
+  }
+
+  setActiveIndex(activeIndex: number) {
+    this.dots.forEach(dot => dot.classList.remove('active'));
+    this.dots[activeIndex].classList.add('active');
+    this.carousel.style.setProperty('--active-index', `${activeIndex}`);
+  }
+  
+  scrollLeft() {
+    let minIndex = false;
+    this.activeIndex--;
+    if (this.activeIndex === -1) {
+      minIndex = true;
+      this.activeIndex = this.slideCount - 1;
     }
-  ];
+    this.setActiveIndex(this.activeIndex);
+    if (minIndex) {
+      this.slides.scrollBy(this.carousel.offsetWidth * (this.slideCount - 1), 0);
+    } else {
+      this.slides.scrollBy(-this.carousel.offsetWidth, 0);
+    }
+  }
 
-  constructor(
-    private sRenderer: StyleRenderer
-  ) { }
+  scrollRight() {
+    let maxIndex = false;
+    this.activeIndex++;
+    if (this.activeIndex === this.slideCount) {
+      maxIndex = true;
+      this.activeIndex = 0;
+    }
+    this.setActiveIndex(this.activeIndex);
+    if (maxIndex) {
+      this.slides.scrollBy(-this.carousel.offsetWidth * (this.slideCount - 1), 0);
+    } else {
+      this.slides.scrollBy(this.carousel.offsetWidth, 0);
+    }
+  }
+
+  autoPlay() {
+    this.autoPlayTimer = setInterval(() => {
+      this.scrollRight();
+    }, 4000);
+    this.canAutoPlay = this.carousel.classList.contains('auto-play');
+    if (!this.canAutoPlay) {
+      clearInterval(this.autoPlayTimer);
+    }
+  }
+
+  resetTimer() {
+    if (this.canAutoPlay) {
+      clearInterval(this.autoPlayTimer);
+      this.autoPlayTimer = setInterval(() => {
+        this.scrollRight();
+      }, 4000);
+    }
+  }
+
+  onDotClick(activeIndex: number, event: Event) {
+    event.preventDefault(); // Evita la navegación predeterminada del enlace
+    this.resetTimer();
+    this.setActiveIndex(activeIndex);
+  }
+
+  onLeftArrowClick() {
+    this.resetTimer();
+    this.scrollLeft();
+  }
+
+  onRightArrowClick() {
+    this.resetTimer();
+    this.scrollRight();
+  }
 }

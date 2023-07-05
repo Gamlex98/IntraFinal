@@ -21,7 +21,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink : 'documentos/documentosFresmar',
                 icon: 'fa fa-folder',
-                label: 'Documentos'
+                label: 'Comunicados'
             },
             {
                 routeLink : 'documentos/plantillasFresmar',
@@ -30,7 +30,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink : 'documentos/manuales-Guias-Fresmar',
                 icon: 'fa fa-file',
-                label: 'Manuales y Guias'
+                label: 'Manuales/Guias'
             },
             {
                 routeLink : 'documentos/logosFresmar',
@@ -42,7 +42,7 @@ export const navbarData: INavbarData[] = [
     {
         routeLink: 'calendario',
         icon: 'fal fa-calendar',
-        label: 'Calendario'
+        label: 'Calendario de Eventos'
     },
     {
         routeLink: 'solicitudes',
@@ -60,7 +60,13 @@ export const navbarData: INavbarData[] = [
         icon: 'fal fa-university',   
         label: 'Cuadre Caja',
         external:true
-    }, 
+    },
+    {
+        href: "http://www.fresmar.com/",
+        icon: 'fal fa-store',   
+        label: 'Pagina Web',
+        external:true
+    },  
     {
         routeLink: 'login',
         icon: 'fal fa-sign-in',

@@ -1,4 +1,9 @@
 
+.sidebar {
+    width: calc(100% - 5rem);
+  }
+  
+
 .counter-wrapper {
     position: relative;
     float: right;
@@ -7,27 +12,6 @@
 .container {
     text-align: center;
     position: relative;
-}
-
-.card {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    border-radius: .5rem;
-    background-color: #fff;
-    margin: 0 .25rem .5rem #e6edef;
-    box-shadow: 0 .25rem .5rem #e6edef;
-
-    .card-head {
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid #edf1f7;
-        font-size: 1rem;
-        font-weight: 600;
-    }
-
-    .card-body {
-        padding: 1rem 1.5rem;
-    }
 }
 
 
@@ -57,7 +41,7 @@ a {
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    height: 30vh;
+    height: 25vh;
     position: relative;
     background: #eee;
     text-align: center;
@@ -66,12 +50,12 @@ a {
     h1 {
         font-size: 2rem;
         margin: 0;
-        letter-spacing: 1rem;
+        letter-spacing: 0.2rem;
     }
 
     h3 {
-        font-size: 1rem;
-        letter-spacing: 0.3rem;
+        font-size: 2rem;
+        letter-spacing: 0.1rem;
         opacity: 0.6;
     }
 }
@@ -86,29 +70,53 @@ a {
     position: relative;
     background: #eee;
     text-align: center;
-    padding: 0 2em;
+    padding: 0 1em;
 
     h1 {
         font-size: 2rem;
         margin: 0;
-        letter-spacing: 1rem;
+        letter-spacing: 0.2rem;
     }
 
     h3 {
         font-size: 1rem;
-        letter-spacing: 0.3rem;
+        letter-spacing: 0.2rem;
+        opacity: 0.6;
+    }
+}
+.et-slide-info {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    height: 140vh;
+    position: relative;
+    background: #eee;
+    text-align: center;
+    padding: 0 1em;
+
+    h1 {
+        font-size: 2rem;
+        margin: 0;
+        letter-spacing: 0.2rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
         opacity: 0.6;
     }
 }
 
 .et-hero-tabs-container {
-    
+
     font-weight: bold;
     display: flex;
     flex-direction: row;
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 91%;
     height: 70px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     background: #c2e2c5;
@@ -144,6 +152,7 @@ a {
     height: 6px;
     background: #10c70a;
     transition: left 0.3s ease;
+    justify-content: left;
 }
 
 @media (min-width: 500px) {
@@ -151,7 +160,7 @@ a {
     .et-hero-tabs,
     .et-slide {
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         h3 {

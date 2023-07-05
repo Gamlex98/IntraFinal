@@ -44,6 +44,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SublevelMenuComponent } from './components/nav-var/sublevel-menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './components/calendario/modal/modal.component';
+import { CopasoComponent } from './components/home/child/copaso/copaso.component';
+import { ImageModule } from 'primeng/image';
+import { InformacionComponent } from './components/home/child/informacion/informacion.component';
 
 @NgModule({
 
@@ -61,7 +64,9 @@ import { ModalComponent } from './components/calendario/modal/modal.component';
     CarouselComponent,
     UploadComponent,
     SublevelMenuComponent,
-    ModalComponent
+    ModalComponent,
+    CopasoComponent,
+    InformacionComponent
     
   ],
   imports: [
@@ -96,7 +101,8 @@ import { ModalComponent } from './components/calendario/modal/modal.component';
     CalendarModule,
     MatProgressBarModule,
     NgbModule,
-    DatePipe
+    DatePipe,
+    ImageModule
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

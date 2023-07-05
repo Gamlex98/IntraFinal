@@ -1,3 +1,4 @@
+
 class StickyNavigation {
   constructor() {
     this.currentId = null;
@@ -77,11 +78,12 @@ class StickyNavigation {
     let left = 0;
     if (this.currentTab) {
       width = this.currentTab.css("width");
-      left = this.currentTab.offset().left;
+      left = this.currentTab.offset().left - $(".et-hero-tabs-container").offset().left;
     }
     $(".et-hero-tab-slider").css("width", width);
     $(".et-hero-tab-slider").css("left", left);
   }
+  
 }
 
 new StickyNavigation();

@@ -1,13 +1,77 @@
+<div class="carousel auto-play" #carousel>
+  <div class="contenedorImagenTexto">
+    <div class="contenedorImagen">
+      <ul class="slides" #slides>
+        <li id="slide-1" class="slide">
+          <img src="assets/img/carousel/1.jpg" alt="img1" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
+        </li>
+        <li id="slide-2" class="slide">
+          <img src="assets/img/carousel/2.jpg" alt="img2" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
+        </li>
+        <li id="slide-3" class="slide">
+          <img src="assets/img/carousel/3.jpg" alt="img3" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
+        </li>
+        <li id="slide-4" class="slide">
+          <img src="assets/img/carousel/4.jpg" alt="img4" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
+        </li>
+        <li id="slide-5" class="slide">
+          <img src="assets/img/carousel/5.jpg" alt="img5" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
+        </li>
+        <li id="slide-6" class="slide">
+          <img src="assets/img/carousel/6.jpg" alt="img6" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
+        </li>
+        <li id="slide-7" class="slide">
+          <img src="assets/img/carousel/7.jpeg" alt="img6" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
+        </li>
+      </ul>
+    </div>
+    <div class="contenedorTexto">
+      <ul class="slides" #slides>
+        <li id="slide-1" class="slide">
+          <div class="textoContainer" *ngIf="activeIndex === 0">
+            <h2>Titulo del Evento 1</h2>
+            <h3>Texto referencia para la imagen 1</h3>
+          </div>
+          <div class="textoContainer" *ngIf="activeIndex === 1">
+            <h2>Titulo del Evento 2</h2>
+            <h3>Texto referencia para la imagen 2</h3>
+          </div>
+          <div class="textoContainer" *ngIf="activeIndex === 2">
+            <h2>Titulo del Evento 3</h2>
+            <h3>Texto referencia para la imagen 3</h3>
+          </div>
+          <div class="textoContainer" *ngIf="activeIndex === 3">
+            <h2>Titulo del Evento 4</h2>
+            <h3>Texto referencia para la imagen 4</h3>
+          </div>
+          <div class="textoContainer" *ngIf="activeIndex === 4">
+            <h2>Titulo del Evento 5</h2>
+            <h3>Texto referencia para la imagen 5</h3>
+          </div>
+          <div class="textoContainer" *ngIf="activeIndex === 5">
+            <h2>Titulo del Evento 6</h2>
+            <h3>Texto referencia para la imagen 6</h3>
+          </div>
+          <div class="textoContainer" *ngIf="activeIndex === 6">
+            <h2>Titulo del Evento 7</h2>
+            <h3>Texto referencia para la imagen 7</h3>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-<ly-carousel [withClass]="classes.carousel">
-  <ly-carousel-item
-    *ngFor="let item of items"
-    [withClass]="classes.carouselItem"
-    [srcImg]="item.img"
-  >
-    <h1 [lyTyp]="'headline'" >{{ item.title }}</h1>
-    <p [lyTyp]="'body1'" >
-      Aqui va la informacion sobre la imagen .
-    </p>
-  </ly-carousel-item>
-</ly-carousel>
+  <ul class="nav-dots">
+    <li class="dot"><a href="#slide-1" (click)="onDotClick(0, $event)"></a></li>
+    <li class="dot"><a href="#slide-2" (click)="onDotClick(1, $event)"></a></li>
+    <li class="dot"><a href="#slide-3" (click)="onDotClick(2, $event)"></a></li>
+    <li class="dot"><a href="#slide-4" (click)="onDotClick(3, $event)"></a></li>
+    <li class="dot"><a href="#slide-5" (click)="onDotClick(4, $event)"></a></li>
+    <li class="dot"><a href="#slide-6" (click)="onDotClick(5, $event)"></a></li>
+    <li class="dot"><a href="#slide-7" (click)="onDotClick(6, $event)"></a></li>
+  </ul>
+  <ul class="nav-arrows">
+    <li class="arrow-left" (click)="onLeftArrowClick()"></li>
+    <li class="arrow-right" (click)="onRightArrowClick()"></li>
+  </ul>
+</div>
