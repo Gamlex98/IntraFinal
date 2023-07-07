@@ -33,6 +33,7 @@
   }
   
   .feature-table {
+    text-align: justify;
     width: 100%;
     border-collapse: collapse;
   }
