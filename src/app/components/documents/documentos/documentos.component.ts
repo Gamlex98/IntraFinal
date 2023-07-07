@@ -36,7 +36,7 @@
     // fechaInicio !: any;
     // fechaFin !: any;
 
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+      @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     constructor(private service: FileService, private http : HttpClient) {}
 

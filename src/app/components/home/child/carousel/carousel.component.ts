@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
+
 export class CarouselComponent implements OnInit {
   @ViewChild('carousel', { static: true }) carouselRef!: ElementRef;
   @ViewChild('slides', { static: true }) slidesRef!: ElementRef;

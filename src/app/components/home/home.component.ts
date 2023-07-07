@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit , OnDestroy {
     $(window).off('resize');
     $('.et-hero-tab').off('click');
     
-    // Si es necesario, llamar a métodos adicionales de limpieza en StickyNavigation
     // this.stickyNavigation.cleanupMethod();
   }
 }

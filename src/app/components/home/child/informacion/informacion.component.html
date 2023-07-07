@@ -1,0 +1,72 @@
+<div class="contenedor-principal">
+    <div class="izquierda">
+        <div class="paginador-contenedor">
+            <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons aria-placeholder="Items por pagina">
+            </mat-paginator>
+        </div>
+        <div class="dataTable">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+                <ng-container matColumnDef="sucursal">
+                    <th mat-header-cell *matHeaderCellDef class="titulo-columna"
+                        style="background-color: rgb(200, 228, 200);">Sede</th>
+                    <td mat-cell *matCellDef="let user" class="contenido-columna">{{ user.sucursal }}</td>
+                </ng-container>
+                <ng-container matColumnDef="nombreCompleto">
+                    <th mat-header-cell *matHeaderCellDef class="titulo-columna"
+                        style="background-color: rgb(200, 228, 200);">Nombre Completo</th>
+                    <td mat-cell *matCellDef="let user" class="contenido-columna">{{ user.nombreCompleto }}</td>
+                </ng-container>
+                <ng-container matColumnDef="cargo">
+                    <th mat-header-cell *matHeaderCellDef class="titulo-columna"
+                        style="background-color: rgb(200, 228, 200);">Cargo</th>
+                    <td mat-cell *matCellDef="let user" class="contenido-columna">{{ user.cargo }}</td>
+                </ng-container>
+                <ng-container matColumnDef="lugarNacimiento">
+                    <th mat-header-cell *matHeaderCellDef class="titulo-columna"
+                        style="background-color: rgb(200, 228, 200);">Ciudad</th>
+                    <td mat-cell *matCellDef="let user" class="contenido-columna">{{ user.lugarNacimiento }}</td>
+                </ng-container>
+                <ng-container matColumnDef="fechaNacimiento">
+                    <th mat-header-cell *matHeaderCellDef class="titulo-columna"
+                        style="background-color: rgb(200, 228, 200);">Fecha</th>
+                    <td mat-cell *matCellDef="let user" class="contenido-columna">{{ user.fechaNacimiento |
+                        date:'dd-MM-YYY' : 'UTC' }}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+    <div class="derecha">
+        <div>
+            <p style="font-weight: bold;">¿ Quieres buscar el listado de cumpleaños para un mes diferente ?</p>
+            <mat-form-field appearance="fill">
+                <mat-label >Seleccionar mes</mat-label>
+                <mat-select [(value)]="selectedMonth" (selectionChange)="getDataUsersWithBirthday(selectedMonth)"
+                    style="color:rgb(200, 228, 200);">
+                    <mat-option *ngFor="let month of months" [value]="month.value">{{ month.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="card">
+            <div class="imgBox">
+                <div class="bark"></div>
+                <img src="https://image.ibb.co/fYzTrb/lastofus.jpg">
+            </div>
+            <div class="details">
+                <h2 class="color1">You're not a Fossil! (YET)</h2>
+                <h3 class="color2 margin">(HAPPY BIRTHDAY)</h3>
+                <p>Dear Dad,</p>
+                <p>Let's see.. .</p>
+                <p>You’re never around, you</p>
+                <p>hate the music I’m into, you</p>
+                <p>practically despise the movies I</p>
+                <p>like, and yet somehow you still</p>
+                <p>manage to be the best dad every year.</p>
+                <p>How do you do that?</p>
+                <p class="text-right"> Feliz Día!</p>
+                <p class="text-right">♥ Fresmar</p>
+            </div>
+        </div>
+    </div>
+</div>

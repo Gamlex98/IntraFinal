@@ -47,6 +47,11 @@ import { ModalComponent } from './components/calendario/modal/modal.component';
 import { CopasoComponent } from './components/home/child/copaso/copaso.component';
 import { ImageModule } from 'primeng/image';
 import { InformacionComponent } from './components/home/child/informacion/informacion.component';
+import { MatInputModule } from '@angular/material/input';
+import { FieldsetModule } from 'primeng/fieldset';
+import { TabViewModule } from 'primeng/tabview';
+import { CocolaComponent } from './components/home/child/cocola/cocola.component';
+import { BrigadaComponent } from './components/home/child/brigada/brigada.component';
 
 @NgModule({
 
@@ -66,7 +71,9 @@ import { InformacionComponent } from './components/home/child/informacion/inform
     SublevelMenuComponent,
     ModalComponent,
     CopasoComponent,
-    InformacionComponent
+    InformacionComponent,
+    CocolaComponent,
+    BrigadaComponent
     
   ],
   imports: [
@@ -95,6 +102,7 @@ import { InformacionComponent } from './components/home/child/informacion/inform
     DropdownModule,
     MatSelectModule,
     MatOptionModule,
+    MatInputModule,
     AutoFocusModule,
     FontAwesomeModule,
     InputTextModule,
@@ -102,12 +110,15 @@ import { InformacionComponent } from './components/home/child/informacion/inform
     MatProgressBarModule,
     NgbModule,
     DatePipe,
-    ImageModule
+    ImageModule,
+    FieldsetModule,
+    TabViewModule
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-  providers: [Validators, 
+  providers: [ 
+            Validators, 
             { provide: HAMMER_GESTURE_CONFIG, useClass: LyHammerGestureConfig }, [ LyTheme2 ],
             [ StyleRenderer ],
             { provide: LY_THEME_NAME, useValue: 'minima-light' },
