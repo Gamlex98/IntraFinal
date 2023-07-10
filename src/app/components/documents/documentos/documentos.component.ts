@@ -20,10 +20,12 @@
     // mostrar_columnas: string[] = ['fecha', 'area', 'nombre', 'url', 'download' ];
     mostrar_columnas: string[] = ['fecha', 'area', 'nombre', 'download' ];
 
+    datosAdministrativa = new MatTableDataSource<DocumentosAdministrativa>(documentosAdministrativa);
     datosAuditoria = new MatTableDataSource<DocumentosAuditoria>(documentosAuditoria);
     datosCalidad = new MatTableDataSource<DocumentosCalidad>(documentosCalidad);
     datosComercial = new MatTableDataSource<DocumentosComercial>(documentosComercial);
     datosContabilidad = new MatTableDataSource<DocumentosContabilidad>(documentosContabilidad);
+    datosGerenciaFinanciera = new MatTableDataSource<DocumentosGerenciaFinanciera>(documentosGerenciaFinanciera);
     datosImportaciones = new MatTableDataSource<DocumentosImportaciones>(documentosImportaciones);
     datosSig = new MatTableDataSource<DocumentosSig>(documentosSig);
     datosTalento_Humano = new MatTableDataSource<DocumentosTalento_Humano>(documentosTalento_Humano);
@@ -41,11 +43,10 @@
     constructor(private service: FileService, private http : HttpClient) {}
 
     ngOnInit() {
-      this.tablaSeleccionada = this.datosCalidad;
-      this.service.getDocumentosPorArea('calidad').subscribe((documentos: DocumentosCalidad[]) => {
-        this.datosCalidad.data = documentos;
-        this.datosCalidad.paginator = this.paginator;
-      });
+      this.tablaSeleccionada = this.datosAdministrativa;
+          this.service.getDocumentosPorArea('administrativa').subscribe((documentos: DocumentosAdministrativa[]) => {
+            this.tablaSeleccionada.data= documentos;
+          });
     }
     
 
@@ -63,6 +64,12 @@
               
     onChange(event: any) {
       switch (event.value) {
+        case 'administrativa':
+          this.tablaSeleccionada = this.datosAdministrativa;
+          this.service.getDocumentosPorArea('administrativa').subscribe((documentos: DocumentosAdministrativa[]) => {
+            this.tablaSeleccionada.data= documentos;
+          });
+          break;
         case 'auditoria':
           this.tablaSeleccionada = this.datosAuditoria;
           this.service.getDocumentosPorArea('auditoria').subscribe((documentos: DocumentosAuditoria[]) => {
@@ -84,6 +91,12 @@
         case 'contabilidad':
           this.tablaSeleccionada = this.datosContabilidad;
           this.service.getDocumentosPorArea('contabilidad').subscribe((documentos: DocumentosContabilidad[]) => {
+            this.tablaSeleccionada.data= documentos;
+          });
+          break;
+          case 'gerencia_financiera':
+          this.tablaSeleccionada = this.datosGerenciaFinanciera;
+          this.service.getDocumentosPorArea('gerencia_financiera').subscribe((documentos: DocumentosGerenciaFinanciera[]) => {
             this.tablaSeleccionada.data= documentos;
           });
           break;
@@ -198,6 +211,16 @@
     }
   } 
 
+  export interface DocumentosAdministrativa{
+    fecha: string;
+    nombre: string;
+    area : string;
+    url: string;
+    download: string;
+  }
+
+  const documentosAdministrativa: DocumentosAdministrativa[] = [];
+
   export interface DocumentosAuditoria{
     fecha: string;
     nombre: string;
@@ -237,6 +260,16 @@
   }
 
   const documentosContabilidad: DocumentosContabilidad[] = [];
+
+  export interface DocumentosGerenciaFinanciera {
+    fecha : string;
+    nombre: string;
+    area : string;
+    url: string;
+    download: string;
+  }
+
+  const documentosGerenciaFinanciera: DocumentosGerenciaFinanciera[] = [];
 
   export interface DocumentosImportaciones {
     fecha : string;

@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DocumentModel } from 'src/app/models/document.model'; 
 import { FileService } from 'src/app/services/file.service';
 import { MatSort } from '@angular/material/sort';
+import { DocumentosServicios_generales } from '../manaules-guias/manaules-guias.component';
 
 @Component({
   selector: 'app-plantillas',
@@ -20,6 +21,9 @@ export class PlantillasComponent implements OnInit, AfterViewInit {
 
   datosAuditoria = new MatTableDataSource<DocumentosAuditoria>(documentosAuditoria);
   datosCalidad = new MatTableDataSource<DocumentosCalidad>(documentosCalidad);
+  datosGerenciaAdministrativa = new MatTableDataSource<DocumentosGerenciaAdministrativa>(documentosGerenciaAdministrativa);
+  datosMantenimiento = new MatTableDataSource<DocumentosMantenimiento>(documentosMantenimiento);
+  datosServiciosGenerales = new MatTableDataSource<DocumentosServicios_generales>(documentosServiciosGenerales);
   datosComercial = new MatTableDataSource<DocumentosComercial>(documentosComercial);
   datosContabilidad = new MatTableDataSource<DocumentosContabilidad>(documentosContabilidad);
   datosImportaciones = new MatTableDataSource<DocumentosImportaciones>(documentosImportaciones);
@@ -69,6 +73,24 @@ export class PlantillasComponent implements OnInit, AfterViewInit {
         case 'calidad':
         this.tablaSeleccionada = this.datosCalidad;
         this.service.getDocumentosPorAreaFormatos('calidad').subscribe((documentos: DocumentosCalidad[]) => {
+          this.tablaSeleccionada.data= documentos;
+        });
+        break;
+        case 'gerencia_administrativa':
+        this.tablaSeleccionada = this.datosGerenciaAdministrativa;
+        this.service.getDocumentosPorAreaFormatos('gerencia_administrativa').subscribe((documentos: DocumentosGerenciaAdministrativa[]) => {
+          this.tablaSeleccionada.data= documentos;
+        });
+        break;
+        case 'mantenimiento':
+        this.tablaSeleccionada = this.datosMantenimiento;
+        this.service.getDocumentosPorAreaFormatos('mantenimiento').subscribe((documentos: DocumentosMantenimiento[]) => {
+          this.tablaSeleccionada.data= documentos;
+        });
+        break;
+        case 'servicios_generales':
+        this.tablaSeleccionada = this.datosCalidad;
+        this.service.getDocumentosPorAreaFormatos('servicios_generales').subscribe((documentos: DocumentosServicios_generales[]) => {
           this.tablaSeleccionada.data= documentos;
         });
         break;
@@ -196,6 +218,36 @@ export interface DocumentosCalidad{
 }
 
 const documentosCalidad: DocumentosCalidad[] = [];
+
+export interface DocumentosGerenciaAdministrativa{
+  fecha: string;
+  nombre: string;
+  area : string;
+  url: string;
+  download: string;
+}
+
+const documentosGerenciaAdministrativa: DocumentosGerenciaAdministrativa[] = [];
+
+export interface DocumentosMantenimiento{
+  fecha: string;
+  nombre: string;
+  area : string;
+  url: string;
+  download: string;
+}
+
+const documentosMantenimiento: DocumentosMantenimiento[] = [];
+
+export interface DocumentosServiciosgenerales{
+  fecha: string;
+  nombre: string;
+  area : string;
+  url: string;
+  download: string;
+}
+
+const documentosServiciosGenerales: DocumentosServiciosgenerales[] = [];
 
 export interface DocumentosComercial{
   fecha: string;

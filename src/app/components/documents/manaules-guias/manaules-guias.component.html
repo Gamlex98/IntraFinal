@@ -1,20 +1,20 @@
 
 
 
-<h1 class="titulo"> Manuales / Guias Fresmar </h1>
+<h1 class="titulo"> Manuales / Guias / Procesos Fresmar </h1>
 
-<mat-form-field class="example-form-field">
-  <mat-label>Selecciona una Area</mat-label>
+<mat-form-field class="form-field">
+  <mat-label>Selecciona una Área</mat-label>
   <mat-select (selectionChange)="onChange($event)">
-    <mat-option value="auditoria">Auditoría</mat-option>
+    <!-- <mat-option value="auditoria">Auditoría</mat-option> -->
     <mat-option value="calidad">Calidad</mat-option>
-    <mat-option value="comercial">Comercial</mat-option>
-    <mat-option value="contabilidad">Contabilidad</mat-option>
-    <mat-option value="importaciones">Importaciones</mat-option>
+    <!-- <mat-option value="comercial">Comercial</mat-option> -->
+    <mat-option value="servicios_generales">Servicios Generales</mat-option>
+    <!-- <mat-option value="importaciones">Importaciones</mat-option> -->
     <mat-option value="sig">Sistemas Integrados de Gestión</mat-option>
-    <mat-option value="talento_humano">Talento Humano</mat-option>
-    <mat-option value="tesoreria">Tesorería</mat-option>
-    <mat-option value="ti">Tecnologías de la Información</mat-option>
+    <!-- <mat-option value="talento_humano">Talento Humano</mat-option> -->
+    <!-- <mat-option value="tesoreria">Tesorería</mat-option> -->
+    <!-- <mat-option value="ti">Tecnologías de la Información</mat-option> -->
   </mat-select>
 
 </mat-form-field>
@@ -42,7 +42,7 @@
 
         <!-- Area Columna -->
         <ng-container matColumnDef="area">
-          <th mat-header-cell *matHeaderCellDef style="text-decoration: underline;"> Area </th>
+          <th mat-header-cell *matHeaderCellDef style="text-decoration: underline;"> Área </th>
           <td mat-cell *matCellDef="let documento" style="font-weight: bold;"> {{documento.area}} </td>
         </ng-container>
 
@@ -58,7 +58,7 @@
           <th mat-header-cell *matHeaderCellDef style="text-decoration: underline;"> Descargar Documento </th>
           <td mat-cell *matCellDef="let documento" style="font-weight: bold;">
             <button mat-icon-button class="descargar-btn" (click)="downloadFile(documento.url,documento.nombre)">
-              <mat-icon style="margin-inline: 20px;">cloud_download</mat-icon>
+              <mat-icon >cloud_download</mat-icon>
             </button>
           </td>
         </ng-container>

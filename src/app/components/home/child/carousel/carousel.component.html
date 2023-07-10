@@ -2,10 +2,9 @@
   <div class="contenedorImagenTexto">
     <div class="contenedorImagen">
       <ul class="slides" #slides>
-        <li id="slide-1" class="slide">
-          <!-- <p-image src="assets/img/carousel/1.jpg" alt="img1" width="300" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()"></p-image> -->
+   <!--      <li id="slide-1" class="slide img-fluid">
           <img src="assets/img/carousel/1.jpg" alt="img1" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
-        </li>
+        </li> -->
         <li id="slide-2" class="slide">
           <img src="assets/img/carousel/2.jpg" alt="img2" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()" />
         </li>
@@ -30,32 +29,32 @@
       <ul class="slides" #slides>
         <li id="slide-1" class="slide">
           <div class="textoContainer" *ngIf="activeIndex === 0">
-            <h2>Titulo del Evento 1</h2>
-            <h3>Texto referencia para la imagen 1</h3>
+            <h2>Evento Deportivo</h2>
+            <h3>Partido de futbol entre las sedes de Pereira y la Romelia Dosquebradas. En la foto se puede apreciar a varios empleados de las sedes S01, S03, S04, S12, S25 y S21</h3>
           </div>
           <div class="textoContainer" *ngIf="activeIndex === 1">
-            <h2>Titulo del Evento 2</h2>
-            <h3>Texto referencia para la imagen 2</h3>
+            <h2>Integración año 2022</h2>
+            <h3>Texto descriptivo para la imagen 1</h3>
           </div>
           <div class="textoContainer" *ngIf="activeIndex === 2">
-            <h2>Titulo del Evento 3</h2>
-            <h3>Texto referencia para la imagen 3</h3>
+            <h2>Integración año 2022</h2>
+            <h3>Texto descriptivo para la imagen 2</h3>
           </div>
           <div class="textoContainer" *ngIf="activeIndex === 3">
-            <h2>Titulo del Evento 4</h2>
-            <h3>Texto referencia para la imagen 4</h3>
+            <h2>Integracion año 2022</h2>
+            <h3>Texto descriptivo para la imagen 4</h3>
           </div>
           <div class="textoContainer" *ngIf="activeIndex === 4">
-            <h2>Titulo del Evento 5</h2>
-            <h3>Texto referencia para la imagen 5</h3>
+            <h2>Integración año 2022</h2>
+            <h3>Texto descriptivo para la imagen 5</h3>
           </div>
           <div class="textoContainer" *ngIf="activeIndex === 5">
-            <h2>Titulo del Evento 6</h2>
-            <h3>Texto referencia para la imagen 6</h3>
+            <h2>Ganadores concurso Hallowen 2022</h2>
+            <h3>Empleados de una de las sedes de Cartagena participando en el concurso de disfraces en Octubre de 2022 </h3>
           </div>
           <div class="textoContainer" *ngIf="activeIndex === 6">
             <h2>Titulo del Evento 7</h2>
-            <h3>Texto referencia para la imagen 7</h3>
+            <h3>Texto descriptivo para la imagen 7</h3>
           </div>
         </li>
       </ul>
@@ -63,7 +62,7 @@
   </div>
 
   <ul class="nav-dots">
-    <li class="dot"><a href="#slide-1" (click)="onDotClick(0, $event)"></a></li>
+    <!-- <li class="dot"><a href="#slide-1" (click)="onDotClick(0, $event)"></a></li> -->
     <li class="dot"><a href="#slide-2" (click)="onDotClick(1, $event)"></a></li>
     <li class="dot"><a href="#slide-3" (click)="onDotClick(2, $event)"></a></li>
     <li class="dot"><a href="#slide-4" (click)="onDotClick(3, $event)"></a></li>

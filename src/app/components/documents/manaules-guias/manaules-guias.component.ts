@@ -24,6 +24,7 @@ export class ManaulesGuiasComponent implements OnInit, AfterViewInit {
   datosComercial = new MatTableDataSource<DocumentosComercial>(documentosComercial);
   datosContabilidad = new MatTableDataSource<DocumentosContabilidad>(documentosContabilidad);
   datosImportaciones = new MatTableDataSource<DocumentosImportaciones>(documentosImportaciones);
+  datosServicions_generales = new MatTableDataSource<DocumentosServicios_generales>(documentosServicios_generales);
   datosSig = new MatTableDataSource<DocumentosSig>(documentosSig);
   datosTalento_Humano = new MatTableDataSource<DocumentosTalento_Humano>(documentosTalento_Humano);
   datosTesoreria = new MatTableDataSource<DocumentosTesoreria>(documentosTesoreria);
@@ -40,9 +41,9 @@ export class ManaulesGuiasComponent implements OnInit, AfterViewInit {
   constructor(private service: FileService, private http : HttpClient) {}
 
   ngOnInit() {
-    this.service.getDocumentosPorAreaManuales('talento_humano').subscribe((documentos: DocumentosTalento_Humano[]) => {
-      this.datosContabilidad.data = documentos;
-      this.datosContabilidad.paginator = this.paginator;
+    this.tablaSeleccionada = this.datosCalidad;
+    this.service.getDocumentosPorAreaManuales('calidad').subscribe((documentos: DocumentosCalidad[]) => {
+      this.tablaSeleccionada.data= documentos;
     });
   }
 
@@ -90,6 +91,12 @@ export class ManaulesGuiasComponent implements OnInit, AfterViewInit {
           this.tablaSeleccionada.data= documentos;
         });
   
+        break;
+        case 'servicios_generales':
+        this.tablaSeleccionada = this.datosServicions_generales;
+        this.service.getDocumentosPorAreaManuales('servicios_generales').subscribe((documentos: DocumentosServicios_generales[]) => {
+          this.tablaSeleccionada.data= documentos;
+        });
         break;
       case 'sig':
         this.tablaSeleccionada = this.datosSig;
@@ -228,6 +235,16 @@ export interface DocumentosImportaciones {
 const documentosImportaciones: DocumentosImportaciones[] = [];
 
 export interface DocumentosSig{
+  fecha : string;
+  nombre: string;
+  area : string;
+  url: string;
+  download: string;
+}
+
+const documentosServicios_generales: [] = [];
+
+export interface DocumentosServicios_generales{
   fecha : string;
   nombre: string;
   area : string;

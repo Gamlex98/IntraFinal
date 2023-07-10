@@ -1,19 +1,18 @@
 <!-- Hero -->
 <app-info-complement></app-info-complement>
-
 <section class="et-hero-tabs">
-    <img src="assets/Logo3.png" style="width: 390px;height: 65px;">
+    <img src="assets/Logo3.png" class="logoFresmar img-fluid">
     <!-- <h1 style="margin-top: 10px;">Bienvenido a Intrafres</h1> -->
-    <h3>Trabajamos con perseverancia para prestarle un servicio excelente.</h3>
-    <h3>Gracias por creer y confiar en nosotros !!</h3>
+    <h3 style="font-weight: bold;">Trabajamos con perseverancia para prestarle un servicio excelente. <br>
+        Gracias por creer y confiar en nosotros !!</h3>
     <div class="et-hero-tabs-container">
         <a class="et-hero-tab" href="#tab-Principal">Principal</a>
-        <a class="et-hero-tab" href="#tab-Acordion">informacion ?</a>
+        <!-- <a class="et-hero-tab" href="#tab-Acordion">informacion</a> -->
         <a class="et-hero-tab" href="#tab-Eventos">Destacados</a>
-        <a class="et-hero-tab" href="#tab-Copass">Copass</a>
+        <a class="et-hero-tab" href="#tab-Copass">Copasst</a>
         <a class="et-hero-tab" href="#tab-Cocola">Cocola</a>
         <a class="et-hero-tab" href="#tab-Brigada">Brigada Emergencia</a>
-        <a class="et-hero-tab" href="#tab-Info">Acerda de</a>
+        <a class="et-hero-tab" href="#tab-Info">Acerca de</a>
         <span class="et-hero-tab-slider"></span>
     </div>
 </section>
@@ -27,37 +26,39 @@
         <br><br>
         <app-informacion></app-informacion>
     </section>
-
-    <section class="et-slide" id="tab-Acordion">
+    <!-- <section class="et-slide" id="tab-Acordion">
         <br>
         <h1> Informacion ?? </h1>
+        <br><br>
         <accordion-template></accordion-template>
-    </section>
+    </section> -->
     <section class="et-slide" id="tab-Eventos">
         <br>
         <h1> Eventos realizados </h1>
-        <br><br>
+        <br>
         <app-carousel></app-carousel>
     </section>
-
-    <section class="et-slide-comites" id="tab-Copass">
+    <section class="et-slide-copaso" id="tab-Copass">
+        <br>
+        <h1>Cómite Paritario de Seguridad y Salud en el Trabajo</h1>
         <br>
         <app-copaso></app-copaso>
     </section>
-
     <section class="et-slide-cocola" id="tab-Cocola">
+        <br>
+        <h1>Cómite de Convivencia Laboral </h1>
         <br>
         <app-cocola></app-cocola>
     </section>
-
     <section class="et-slide-brigada" id="tab-Brigada">
+        <br>
+        <h1>Brigada de Emergencia </h1>
         <br>
         <app-brigada></app-brigada>
     </section>
-
     <section class="et-slide-info" id="tab-Info">
-        <h1>Información de Interés</h1>
         <br>
+        <h1>Información de Interés</h1>
         <app-card></app-card>
     </section>
 

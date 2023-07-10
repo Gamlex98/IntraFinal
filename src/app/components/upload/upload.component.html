@@ -6,7 +6,7 @@
       <label for="tipo">Tipo :</label>
       <select class="form-control" id="IdSeleccionarArea" [(ngModel)]="documento.tipo" name="tipo" required>
         <option value="" disabled selected>Seleccione el Tipo...</option>
-        <option value="documento">Documento</option>
+        <option value="documento">Comunicados</option>
         <option value="formato">Formato</option>
         <option value="manual">Manual / Guia</option>
         <option value="Logo">Logo</option>
@@ -29,11 +29,16 @@
       <label for="area">Area:</label>
       <select class="form-control" id="IdSeleccionarArea" [(ngModel)]="documento.area" name="area" required>
         <option value="" disabled selected>Seleccione el Área...</option>
+        <option value="administrativa">Administrativa</option>
         <option value="auditoria">Auditoría</option>
         <option value="calidad">Calidad</option>
         <option value="comercial">Comercial</option>
         <option value="contabilidad">Contabilidad</option>
+        <option value="gerencia_financiera">Gerencia Financiera</option>
+        <option value="gerencia_administrativa">Gerencia Administrativa</option>
+        <option value="mantenimiento">Mantenimiento</option>
         <option value="importaciones">Importaciones</option>
+        <option value="servicios_generales">Servicios Generales</option>
         <option value="sig">Sistemas Integrados de Gestión</option>
         <option value="talento_humano">Talento Humano</option>
         <option value="tesoreria">Tesorería</option>
@@ -46,14 +51,24 @@
       <label for="archivo">Carpeta :</label>
       <select class="form-control" (change)="onFolderSelected($event)">
         <option value="" disabled selected>Seleccione la Carpeta...</option>
-        <option value="documentos/auditoria/">Auditoria</option>
+        <option value="documentos/administrativa/">Administrativa Comunicado</option>
+        <option value="documentos/auditoria/">Auditoria Comunicado</option>
         <option value="documentos/calidad/">Calidad</option>
         <option value="formatos/calidad/">Calidad Formatos</option>
+        <option value="manuales/calidad/">Calidad Manuales</option>
         <option value="documentos/comercial/">Comercial</option>
-        <option value="documentos/contabilidad/">Contabilidad</option>
+        <option value="documentos/contabilidad/">Contabilidad Comunicado</option>
+        <option value="documentos/gerencia_financiera/">Gerencia Financiera Comunicados</option>
+        <option value="formatos/gerencia_administrativa/">Gerencia Administrativa Formatos</option>
+        <option value="formatos/mantenimiento/">Mantenimiento Formatos</option>
         <option value="documentos/importaciones/">Importaciones</option>
-        <option value="documentos/sig/">Sistemas Integrados de Gestion</option>
-        <option value="documentos/talento_humano/">Talento Humano</option>
+        <option value="formatos/servicios_generales/">Servicios Generales Formatos</option>
+        <option value="manuales/servicios_generales/">Servicios Generales Manuales</option>
+        <option value="documentos/sig/">Sistemas Integrados de Gestion Comunicados</option>
+        <option value="formatos/sig/">Sistemas Integrados de Gestion Formatos</option>
+        <option value="manuales/sig/">Sistemas Integrados de Gestion Manuales</option>
+        <option value="documentos/talento_humano/">Talento Humano Comunicado</option>
+        <option value="formatos/talento_humano/">Talento Humano Formatos</option>
         <option value="documentos/tesoreria/">Tesoreria</option>
         <option value="documentos/ti/">Tecnologias de la Informacion</option>
       </select>

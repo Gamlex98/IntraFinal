@@ -1,4 +1,20 @@
 
+.form-field {
+    margin-left: 100px;
+  }
+
+  .mat-elevation-z8 {
+    margin-left: 100px;
+    width: 70%;
+  }
+
+  .form-control {
+    width: 70%;
+    margin-left: 100px;
+  }
+
+
+
 .titulo {
     text-align: center;
     font-family: 'Roboto', sans-serif;

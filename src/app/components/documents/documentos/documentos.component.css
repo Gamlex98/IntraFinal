@@ -16,6 +16,19 @@ table {
     height: 600px;
   }
 
+  .form-field {
+    margin-left: 100px;
+  }
+
+  .mat-elevation-z8 {
+    margin-left: 100px;
+    width: 70%;
+  }
+
+  .form-control {
+    width: 70%;
+    margin-left: 100px;
+  }
 
 .nametext {
   min-width: 150px;

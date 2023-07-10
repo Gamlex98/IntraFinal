@@ -13,6 +13,7 @@ body {
   }
   
   .contenedorImagen {
+    width: 100%;
     flex: 1;
   }
   
@@ -43,8 +44,8 @@ body {
   
 
   .carousel {
-    --carousel-width: 600px;
-    --carousel-height: 400px;
+    --carousel-width: 900px;
+    --carousel-height: 600px;
     --navdots-height: 24px;
     --active-index: 0;
     position: relative;

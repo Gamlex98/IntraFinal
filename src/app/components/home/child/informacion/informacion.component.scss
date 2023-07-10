@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+/* @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
 body {
@@ -17,12 +17,10 @@ h4 {
 	font-family: 'Amatic SC', cursive !important;
 }
 
-.color1{color:#1BBC9B}/*MOUNTAIN MEADOW*/
-.color2{color:#C0392B/*TALL POPPY*/}
 
 
 .card {
-	color: #013243; /*SHERPA BLUE*/
+	color: #013243; 
 	position: absolute;
 	top: 54%;
 	left: 80%;
@@ -119,20 +117,28 @@ h4 {
 
 .text-right {
 	text-align: right;
-}
+} */
 
 ////////////////////////////////////////////////////
+
+.dataTable {
+	width: 100%;
+  }
+  
+  @media (max-width: 600px) {
+	.dataTable {
+	  width: auto;
+	  overflow-x: auto;
+	}
+  }
+  
 
 .titulo-columna {
     font-weight: bold;
 }
-
-.dataTable {
-    width: 880px;
-  }
   
 .paginador-contenedor {
-    width: 500px;
+    width: 60%;
     justify-self: center;
 }
   

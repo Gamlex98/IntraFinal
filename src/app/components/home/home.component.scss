@@ -1,3 +1,8 @@
+.logoFresmar {
+    width:30%;
+    height:40%;
+}
+
 
 .sidebar {
     width: calc(100% - 5rem);
@@ -48,14 +53,20 @@ a {
     padding: 0 0em;
 
     h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #07a142; 
         font-size: 2rem;
         margin: 0;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
     }
 
     h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #054103; 
         font-size: 2rem;
-        letter-spacing: 0.1rem;
+        letter-spacing: 0.05rem;
         opacity: 0.6;
     }
 }
@@ -73,14 +84,20 @@ a {
     padding: 0 1em;
 
     h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
         font-size: 2rem;
         margin: 0;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
     }
 
     h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
         font-size: 1rem;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
         opacity: 0.6;
     }
 }
@@ -91,109 +108,162 @@ a {
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    height: 130vh;
+    height: auto;
+    width: auto;
     position: relative;
     background: #eee;
     text-align: center;
     padding: 0 1em;
 
     h1 {
+        font-family: "Playfair Display", serif;
+        color: #268048; 
         font-size: 2rem;
         margin: 0;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
     }
 
     h3 {
+        font-family: "Playfair Display", serif;
+        color: #268048; 
         font-size: 1rem;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
+        opacity: 0.6;
+    }
+}
+
+.et-slide-copaso {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    height: auto;
+    width: auto;
+    position: relative;
+    background: #eee;
+    text-align: center;
+    padding: 0 1em;
+
+    h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
+        font-size: 2rem;
+        margin: 0;
+        letter-spacing: 0.1rem;
+    }
+
+    h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
         opacity: 0.6;
     }
 }
 
 .et-slide-cocola {
-
     display: flex;
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    height: 150vh;
+    height: auto;
+    width: auto;
     position: relative;
     background: #eee;
     text-align: center;
     padding: 0 1em;
 
     h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
         font-size: 2rem;
         margin: 0;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
     }
 
     h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
         font-size: 1rem;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
         opacity: 0.6;
     }
 }
 
 .et-slide-brigada {
-
     display: flex;
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    height: 150vh;
+    height: auto;
+    width: auto;
     position: relative;
     background: #eee;
     text-align: center;
     padding: 0 1em;
 
     h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
         font-size: 2rem;
         margin: 0;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
     }
 
     h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
         font-size: 1rem;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
         opacity: 0.6;
     }
 }
 
 .et-slide-info {
-
     display: flex;
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    height: 140vh;
+    height: auto;
+    width: auto;
     position: relative;
     background: #eee;
     text-align: center;
     padding: 0 1em;
 
     h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
         font-size: 2rem;
         margin: 0;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
     }
 
     h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: bold;
+        color: #268048; 
         font-size: 1rem;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
         opacity: 0.6;
     }
 }
 
 .et-hero-tabs-container {
-
     font-weight: bold;
     display: flex;
     flex-direction: row;
     position: absolute;
     bottom: 0;
     width: 91%;
-    height: 70px;
+    height: 30%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     background: rgb(174, 223, 174);
     z-index: 10;
@@ -201,6 +271,8 @@ a {
     &--top {
         position: fixed;
         top: 0;
+        height: 7%;
+        width: 91%;
     }
 }
 
@@ -210,7 +282,8 @@ a {
     align-items: center;
     flex: 1;
     color: #000;
-    letter-spacing: 0.1rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
     transition: all 0.5s ease;
     font-size: 0.8rem;
 
@@ -246,5 +319,6 @@ a {
 
     .et-hero-tab {
         font-size: 1rem;
+        font-weight: bold;
     }
 }

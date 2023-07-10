@@ -43,7 +43,7 @@ export class NavVarComponent implements OnInit{
   @HostListener('window:resize', ['$event'])
   ngOnInit(): void {
     this.screenWidth= window.innerWidth;
-    if (this.screenWidth <= 768) {
+    if (this.screenWidth <= 1100) {
       this.collapsed= false;
       this.onToggleSideNav.emit({collapsed:this.collapsed, screenWidth: this.screenWidth});
     } else {

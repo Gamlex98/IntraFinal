@@ -30,7 +30,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink : 'documentos/manuales-Guias-Fresmar',
                 icon: 'fa fa-file',
-                label: 'Manuales/Guias'
+                label: 'Guias/Procesos'
             },
             {
                 routeLink : 'documentos/logosFresmar',
